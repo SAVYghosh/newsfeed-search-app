@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Cognizant News</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 offset-md-3">
+                    <h1>Log In Here!!</h1> <hr>
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input id="userEmail" type="email" name="userEmail" formControlName="userEmail" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userEmail.errors }"/>
+                        <div id="emailError" *ngIf="checkInSubmission && check.userEmail.errors " class="invalid-feedback">
+                                <div *ngIf="check.userEmail.errors.required">Email is required</div>
+                                <div *ngIf="check.userEmail.errors.pattern">Email must be vaild and contain atleast one @ and one dot[.]</div>
+
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input id="userPassword" type="password" name="userPassword" formControlName="userPassword" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userPassword.errors }"/>
+                        <div id="passwordError" *ngIf="checkInSubmission && check.userPassword.errors" class="invalid-feedback">
+                                <div *ngIf="check.userPassword.errors.required">Password is required</div>
+                                <div *ngIf="check.userPassword.errors.pattern">Password must contain atleast one uppercase,one Lowercase,one digit , one special character and minimum and maximum length should be 8 and 16</div>
+    
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <button [ngClass]="{ 'disabled': checkInSubmission && loginForm.invalid }" class="btn btn-success" style="width: 100%">Sign In</button>
+                        <br>
+                        <br>
+                        <a id="signupButton" class="btn btn-info" routerLink="../Signup" style="width: 100%">Dont have an account?Sign Up here</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

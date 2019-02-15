@@ -1,0 +1,11 @@
+.jumbotron {
+    background-color: white;
+}
+.col-md-5{
+    background-color: rgb(250, 241, 227);
+    border: 1px solid rgb(20, 42, 85);
+    border-top-right-radius: 30%;
+    padding-top:30px; 
+    box-shadow: 10px 15px #b8b5b5;
+
+}

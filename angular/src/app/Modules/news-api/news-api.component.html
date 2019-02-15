@@ -1,0 +1,37 @@
+
+<app-user-nav></app-user-nav>
+
+  
+<div class="jumbotron col-md-8 mx-auto">
+
+  <div class="container">
+    <form [formGroup]="searchForm" (ngSubmit)="searchArticles(searchForm.value)">
+          <div class="row">
+            <div class="col">
+             <input type="text" placeholder="Search.." name="search" formControlName="search" class="form-control">
+            </div>
+            <div class="col-auto">
+             <button type="submit" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+            </div>
+          </div>
+        </form>
+    </div>
+<br><br>
+    <div class="container">
+        
+  <div *ngFor="let article of mArticles">
+    <div class="card">
+      <h4 class="card-title">{{article.title}}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{article.source.name}}</h6>
+      <img mat-card-image class="img-article" src={{article.urlToImage}} alt="">
+      <div class="card-body">
+        <span>
+          {{article.description}}
+        </span>
+      </div>
+      <a href={{article.url}} target="_blank" class="card-link" style="text-align:right"><i class="fa fa-eye" style="font-size:18px"> See Full articles here</i></a>
+    </div>
+    <br>
+  </div>
+</div>
+</div>

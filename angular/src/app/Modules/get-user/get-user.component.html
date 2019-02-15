@@ -1,0 +1,95 @@
+
+<app-admin-nav></app-admin-nav>
+
+<!-- <div class="jumbotron col-md-8 mx-auto">
+    <div class="container">
+    <div class="form-inline">
+        <form [formGroup]="searchForm" (ngSubmit)="searchUser(searchForm.value)">
+          <div class="col-xs-10">
+             <input type="text" placeholder="Search.." name="search" formControlName="search" class="form-control">
+            </div>
+            <div class="col-xs-2">
+             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+        </form>
+      </div>
+      </div>
+      </div> -->
+      <!-- <form [formGroup]="formdata" (ngSubmit)="searchArticles(formdata.value)" >
+          <div class="row">
+          <div class="col">
+          <input type="search" class="form-control" formControlName="search" placeholder="Search by news topics or keywords...">
+          </div>
+          <div class="col-auto">
+          <button type="search" class="btn btn-success"><span class="fa fa-search"></span>&nbsp;Search</button>
+          </div>
+          </div>
+          </form>
+      <p>
+        works.
+      </p> -->
+      <div class="jumbotron">
+
+          <div class="container">
+                  <form [formGroup]="searchForm" (ngSubmit)="searchUser(searchForm.value)">
+                      <div class="row">
+                     <div class="col">
+                       <input type="search" placeholder="Search.." name="Name" formControlName="Name" class="form-control" >
+                      </div>
+                      <div class="col-auto">
+                          <button type="search" class="btn btn-success"><span class="fa fa-search"></span>&nbsp;Search</button>
+                          </div>
+                        </div>
+
+                  </form>
+                  <br>
+                  <br>
+            <table class="table"  *ngIf="! issearched">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                <th></th>
+                  <th>UserEmail</th>
+                  <th></th>
+                  <th> Block User </th>
+                </tr>  
+              </thead>
+
+              <tbody>
+                <tr scope="row" *ngFor="let Alist of analystList, let i=index">
+                    <td > {{Alist.userName}}</td>
+                    <td></td>
+                  <td>  {{Alist.userEmail}}</td>
+                  <td></td>
+                  <td *ngIf="Alist.userStatus"> <button class="btn btn-danger" (click)="blockUser(i,Alist.userEmail)">Block User</button> </td>       
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table"  *ngIf="issearched">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                  <th></th>
+                    <th>UserEmail</th>
+                    <th></th>
+                  <th> Block User </th>
+                </tr> 
+                   
+                </thead>
+              <tbody>
+                  <tr scope="row" *ngFor="let Slist of searchedList">
+                      <td > {{Slist.userName}}</td>
+                      <td></td>
+                    <td>  {{Slist.userEmail}}</td>
+                    <td></td>
+                     <td *ngIf="Slist.userStatus">   <button class="btn btn-danger" (click)="blockUser(i,Slist.userEmail)">Block User</button> </td>       
+                    <td *ngIf="!Slist.userStatus">  User Blocked  </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+
+</div>
+    

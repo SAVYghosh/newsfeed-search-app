@@ -1,0 +1,33 @@
+<app-user-nav></app-user-nav>
+
+
+  
+<div class="jumbotron col-md-8 mx-auto">
+  <div class="container">
+
+      <table class="table"  *ngIf="! issearched">
+          <thead>
+            <tr>
+              <th>Search Details</th>
+            <th></th>
+              <th>Search Time</th>
+              <th></th>
+              <th> Delete </th>
+            </tr>  
+          </thead>
+
+          <tbody>
+            <tr scope="row" *ngFor="let searchList of SearchList, let i=index">
+                <td > {{SearchList[i].searchString}}</td>
+                <td></td>
+              <td>  {{SearchList[i].searchTime}}</td>
+              <td></td>
+              <td > <button class="btn btn-danger" (click)="deleteSearch(i,SearchList[i].searchId)">Delete History</button> </td>       
+            </tr>
+          </tbody>
+        </table>
+
+
+
+    </div>
+  </div>
