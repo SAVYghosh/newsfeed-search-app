@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   checkInSubmission: boolean;
   email:string;
+  isBlocked:boolean;
+  isWrongCredential:boolean;
   constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
@@ -35,25 +37,41 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     };
-    console.log(user)
     this.loginService.login(user).subscribe(
       data => {
+        if(data=="blocked"){
+          this.isBlocked=true;
+          new Promise((res) => {
+            setTimeout(() => {
+            this.isBlocked= false;
+            res();
+            }, 6000);
+            }) 
+        }
+        else{
         if(user.userEmail=="admin@admin.com")
         {
-          console.log(data);
+        //  window.sessionStorage.setItem('Token',data);
           window.sessionStorage.setItem('Token',data);
           this.router.navigate(['GetUser']);  
         }
         else
         {
-        console.log(data);
+     //   window.sessionStorage.setItem('Token',data);
         window.sessionStorage.setItem('Token',data);
-        this.router.navigate(['News']);   
-        }   
+        this.router.navigate(['Usernav']);   
+        }  
+      } 
       },
       error =>{
-        alert("Wrong credential");
-        this.router.navigate(['Login']);
+        this.isWrongCredential=true;
+        new Promise((res) => {
+          setTimeout(() => {
+          this.isWrongCredential= false;
+          this.router.navigate(['Login']);
+          res();
+          }, 6000);
+          }) 
       }
     );
   }

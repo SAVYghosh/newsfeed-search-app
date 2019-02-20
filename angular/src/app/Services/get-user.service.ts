@@ -10,7 +10,6 @@ export class GetUserService {
   constructor(private http: HttpClient) { }
 
     getAllUser() {
-    console.log("inside getuser service");
     return this.http.get<Array<User>>("http://localhost:8085/admin/getAllUser");
   }
 

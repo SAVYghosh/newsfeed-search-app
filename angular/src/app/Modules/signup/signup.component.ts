@@ -12,6 +12,10 @@ import { User } from 'src/app/Models/User';
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   checkInSubmission: boolean;
+  correct:boolean;
+  incorrect:boolean;
+
+
   constructor(private formBuilder: FormBuilder, private router: Router,private signupService: SignupService) 
   { 
      
@@ -20,9 +24,9 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.checkInSubmission = false;
     this.signUpForm=this.formBuilder.group({
-      userName : ['',Validators.required],
+      userName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(20),Validators.pattern('^[a-zA-Z ]+$')]],
       userEmail :['',[Validators.required,Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-zA-Z0-9_\.-]+)\\.([a-zA-Z]{2,5})$')]],
-      userPassword :['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%?&*_]).{8,16}$')]]
+      userPassword :['',[Validators.required,Validators.maxLength(12),Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%?&*_]).{6,}$')]]
 
     })
   }
@@ -34,29 +38,33 @@ export class SignupComponent implements OnInit {
     if (this.signUpForm.invalid) {
       return;
     };
-    console.log("inside");
-    console.log(user);
     this.signupService.signup(user).subscribe(
       data=>{
-      console.log(data);
-      if (data =="Registration successfull!"){
-        alert("Registration Sucessfull");
+      if (data =="Registered"){
+        this.correct=true;
+        new Promise((res) => {
+          setTimeout(() => {
+          this.correct = false;
           this.router.navigate(['Login']);
+          res();
+          }, 6000);
+          }) 
         }
         else
         {
-          alert("Email Already exist");
-          this.router.navigate(['Login']);
+          this.incorrect=true;
+          new Promise((res) => {
+            setTimeout(() => {
+            this.incorrect = false;
+            res();
+            }, 6000);
+            }) 
+            this.router.navigate(['Signup']);
 
         }
       },
-      
       error=>{
-        alert("Something went wrong, try again");
-        
-      }
-      
-      
-      );
+        alert("Something went wrong, try again");   
+      });
   }
 }

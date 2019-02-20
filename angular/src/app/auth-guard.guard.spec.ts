@@ -9,7 +9,7 @@ describe('AuthGuardGuard', () => {
     });
   });
 
-  it('should ...', inject([AuthGuardGuard], (guard: AuthGuardGuard) => {
-    expect(guard).toBeTruthy();
-  }));
+  // it('should ...', inject([AuthGuardGuard], (guard: AuthGuardGuard) => {
+  //   expect(guard).toBeTruthy();
+  // }));
 });

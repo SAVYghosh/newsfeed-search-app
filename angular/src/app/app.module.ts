@@ -18,7 +18,9 @@ import { GetUserService } from './Services/get-user.service';
 import { HttpConfigInterceptor } from './HttpConfigInterceptor';
 import { SearchHistoryComponent } from './Modules/search-history/search-history.component';
 
-
+// export function tokenGetter(){
+//   return localStorage.getItem('Token')
+// }
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,12 +31,14 @@ import { SearchHistoryComponent } from './Modules/search-history/search-history.
     AdminNavComponent,
     GetUserComponent,
     SearchHistoryComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+   
   ],
   providers: [NewsApiService, LoginService, SignupService,GetUserService,
     {provide:HTTP_INTERCEPTORS,useClass:HttpConfigInterceptor,multi:true}],

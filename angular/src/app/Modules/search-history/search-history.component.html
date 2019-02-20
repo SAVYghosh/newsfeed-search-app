@@ -1,28 +1,33 @@
-<app-user-nav></app-user-nav>
+<div *ngIf="isDelete"class="alert alert-danger">
+    <strong>One history deleted</strong>
+    </div>
 
-
-  
-<div class="jumbotron col-md-8 mx-auto">
+<br>
+<div class=" col-md-8 mx-auto">
   <div class="container">
-
-      <table class="table"  *ngIf="! issearched">
+     
+      <table class="table table-striped table-light table-hover">
           <thead>
             <tr>
+                <th>#</th>
               <th>Search Details</th>
             <th></th>
+              <th>Search Date</th>
               <th>Search Time</th>
               <th></th>
               <th> Delete </th>
             </tr>  
           </thead>
-
           <tbody>
             <tr scope="row" *ngFor="let searchList of SearchList, let i=index">
+                <td > {{i+1}}</td>
                 <td > {{SearchList[i].searchString}}</td>
                 <td></td>
-              <td>  {{SearchList[i].searchTime}}</td>
+              <td>  {{SearchList[i].searchTime | date : "dd/MM/yy"}}</td>
+              <td>  {{SearchList[i].searchTime | date : "hh:mm:ss a"}}</td>
               <td></td>
-              <td > <button class="btn btn-danger" (click)="deleteSearch(i,SearchList[i].searchId)">Delete History</button> </td>       
+
+              <td > <button id={{i}} class="btn btn-outline-danger" (click)="deleteSearch(i,SearchList[i].searchId)"><i class="fa fa-remove"></i></button> </td>       
             </tr>
           </tbody>
         </table>

@@ -11,6 +11,7 @@ import { Search } from 'src/app/Models/Search';
 export class SearchHistoryComponent implements OnInit {
 emailId:String;
 SearchList: Search[];
+isDelete:Boolean;
   constructor(private newsapi: NewsApiService,private router: Router) { }
 
   ngOnInit() {
@@ -18,7 +19,7 @@ SearchList: Search[];
     this.newsapi.getSearch(this.emailId).subscribe(
       data=>{
         this.SearchList=data;
-        console.log(this.SearchList);
+        
       }
     )
   }
@@ -28,9 +29,16 @@ SearchList: Search[];
     this.newsapi.deleteSearch(searchId).subscribe(
       data=>
       {
-        console.log("deleted")
       }
     )
+    alert("one history deleted");
+    this.isDelete=true;
+    new Promise((res) => {
+      setTimeout(() => {
+      this.isDelete= false;
+      res();
+      }, 3000);
+      })
   }
 
 

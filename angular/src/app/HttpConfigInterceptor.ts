@@ -19,7 +19,6 @@ export class HttpConfigInterceptor implements HttpInterceptor{
                     headers: req.headers.append('Authorization', 'Bearer ' + token)
                 });
         }
-        
         return next.handle(authReq);
     }
 

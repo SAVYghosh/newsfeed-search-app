@@ -17,10 +17,13 @@ emailId:String;
  }
 
   initSources(){
+    console.log("in source");
+
 	 return this.http.get('https://newsapi.org/v2/sources?language=en&apiKey='+this.api_key);
   }
 
   initArticles(){
+    console.log("in article");
    return this.http.get('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey='+this.api_key);
   }
 
@@ -40,12 +43,11 @@ emailId:String;
   }
 
   getSearch(emailId){
-    console.log("in news");
     return this.http.get<Array<Search>>("http://localhost:8085/user/searchHistory/"+emailId);
   }
 
   deleteSearch(searchId){
-    return this.http.get("http://localhost:8085/user/searchHistory/"+searchId);
+    return this.http.get("http://localhost:8085/user/searchDelete/"+searchId,{responseType:'text'});
 
   }
 

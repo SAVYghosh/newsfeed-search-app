@@ -12,7 +12,8 @@ export class AdminNavComponent implements OnInit {
   ngOnInit() {
   }
   logout(){
-		   window.sessionStorage.clear();
+       window.sessionStorage.clear();
+    window.sessionStorage.clear();
 		   window.location.reload();
 		} 
 }

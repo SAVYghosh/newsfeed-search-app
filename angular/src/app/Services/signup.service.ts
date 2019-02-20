@@ -10,7 +10,6 @@ export class SignupService {
    constructor(private http:HttpClient) { }
 
   signup(user: User) {
-     console.log(user);
     return this.http.post("http://localhost:8085/auth/signup", user, { responseType: 'text' });
   }
 

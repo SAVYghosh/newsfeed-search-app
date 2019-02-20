@@ -25,7 +25,7 @@ export class SignupPage{
         element(by.id('userPassword')).sendKeys(userPassword);
     }
     clickSignup() {
-        element(by.css('.btn-success')).click();
+        element(by.css('.btn-outline-success')).click();
     }
     navigateToLogin() {
         element(by.css('a')).click();

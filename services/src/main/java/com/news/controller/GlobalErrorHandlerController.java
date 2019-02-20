@@ -52,8 +52,9 @@ public class GlobalErrorHandlerController {
 			error.setErrorMessage("Wrong Credential,Contact Admin");
 			return new ResponseEntity<ErrorResponse>(error, HttpStatus.BAD_REQUEST);
 		}
+		
 		error.setErrorMessage("System error,Contact Admin");
-		error.setReasonCode(HttpStatus.BAD_REQUEST.value());
+		error.setReasonCode(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS.value());
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.BAD_REQUEST);
 	} 
 }

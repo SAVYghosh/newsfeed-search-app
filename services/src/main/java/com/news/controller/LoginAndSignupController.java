@@ -21,7 +21,6 @@ import com.news.entity.User;
 import com.news.security.JwtGenerator;
 import com.news.service.LoginAndSignup.LoginAndSignupService;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 @RestController
 @RequestMapping("auth")
@@ -46,15 +45,13 @@ public class LoginAndSignupController extends GlobalErrorHandlerController{
 	{
 		appuser.setRoles("ROLE_USER");
 		appuser.setUserStatus(true);
-		System.out.println(appuser);
 		appuser.setUserPassword(encoder.encode(appuser.getUserPassword()));
 		
 		return loginAndSignupService.saveUser(appuser);
 	}
 	@PostMapping("/login")
 	public String login(@RequestBody User appUser){
-		if(loginAndSignupService.getUser(appUser.getUserEmail())==true){
-			System.out.println(appUser);
+		if(loginAndSignupService.getUserStatus(appUser.getUserEmail())==true){
 		Authentication authentication =  authenticationManager.authenticate(
 		new UsernamePasswordAuthenticationToken(appUser.getUserEmail(),appUser.getUserPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);

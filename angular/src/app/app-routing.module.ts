@@ -6,12 +6,9 @@ import { LoginComponent } from './Modules/login/login.component';
 import { AuthGuardGuard } from './auth-guard.guard';
 import { GetUserComponent } from './Modules/get-user/get-user.component';
 import { SearchHistoryComponent } from './Modules/search-history/search-history.component';
+import { UserNavComponent } from './user-nav/user-nav.component';
 
-const routes: Routes = [{
-  path:'News',
-  component: NewsApiComponent,
-  canActivate : [AuthGuardGuard]
-},
+const routes: Routes = [
 {
   path:'Signup',
   component:SignupComponent
@@ -25,11 +22,21 @@ const routes: Routes = [{
   component: GetUserComponent,
   canActivate : [AuthGuardGuard]
 },
+
 {
-  path:'SearchHistory',
-  component: SearchHistoryComponent,
-  canActivate : [AuthGuardGuard]
-},
+  path: 'Usernav',
+  component:UserNavComponent,
+  canActivate:[AuthGuardGuard],
+     children:[
+     {
+       path:'SearchHistory',
+      component: SearchHistoryComponent
+      },
+     {
+       path:'News',
+       component: NewsApiComponent,
+      }
+]}
 
 ];
 

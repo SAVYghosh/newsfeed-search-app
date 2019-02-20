@@ -27,10 +27,10 @@ export class NewsApiComponent implements OnInit {
 
 	ngOnInit() {
 	//load articles
+	console.log("call article");
 	this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
-    //load news sources
+    //  //load news sources
 	this.newsapi.initSources().subscribe(data=> this.mSources = data['sources']);  
-
 	this.searchForm = this.formBuilder.group({
 		search:new FormControl()
 	  });
@@ -43,12 +43,7 @@ export class NewsApiComponent implements OnInit {
 		this.searchResult.user = this.user;
 		this.newsapi.saveSearch(this.searchResult).subscribe(
 			data => {
-					console.log(data);
 			});
 		}
-
-
-
-
  
 }

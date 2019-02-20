@@ -32,36 +32,11 @@ public class AdminServiceTest {
 	public void init(){
 		MockitoAnnotations.initMocks(this);
 	}
+	
+	User user=new User();
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	
-	User user=new User(){
-		@Override
-		public void setUserEmail(String Email) {
-			super.setUserEmail("b");
-		}
-		@Override
-		public void setUserName(String Name) {
-			super.setUserName("b");
-		}
-		@Override
-		public void setUserPassword(String Password) {
-			super.setUserPassword("b");
-		}
-		@Override
-		public void setUserStatus(Boolean status) {
-			super.setUserStatus(true);
-		}
-		@Override
-		public void setRoles(String Role) {
-			super.setRoles("ROLE_USER");
-		}
-	};
-	
-	List<User> list=new ArrayList<User>();
+	//get one user list
 	
 	
 	@Test
@@ -71,15 +46,46 @@ public class AdminServiceTest {
 	}
 
 	@Test
+	public void getUserFail(){	
+		when(mockAdminRepo.findByUserEmail("b")).thenReturn(null);
+		assertEquals(null,mockAdminService.getUser("b"));
+	}
+	
+	
+	
+	
+	//get all user
+	
+	@Test
 	public void getAllUserPass(){	
+		List<User> list=new ArrayList<User>();
 		list.add(user);
 		when(mockAdminRepo.findAllByRoles()).thenReturn(list);
 		assertEquals(list,mockAdminService.getAllUser());
 	}
+	
+	
+	//block a user
+	
 	@Test
 	public void blockUserPass(){
+		user.setUserStatus(true);
 		when(mockAdminRepo.findByUserEmail("b")).thenReturn(user);
-		when(mockAdminRepo.save(user)).thenReturn(user);
 		assertEquals("blocked",mockAdminService.blockUser("b"));
+	}
+	@Test
+	public void blockUserFailEmailNull(){
+		assertEquals("no email present",mockAdminService.blockUser(null));
+	}
+	@Test
+	public void blockUserFailEmailNotPresent(){
+		when(mockAdminRepo.findByUserEmail("b")).thenReturn(null);
+		assertEquals("user invalid",mockAdminService.blockUser("b"));
+	}
+	@Test
+	public void blockUserFailAlreadyBlock(){
+		user.setUserStatus(false);
+		when(mockAdminRepo.findByUserEmail("b")).thenReturn(user);
+		assertEquals("already blocked",mockAdminService.blockUser("b"));
 	}
 }

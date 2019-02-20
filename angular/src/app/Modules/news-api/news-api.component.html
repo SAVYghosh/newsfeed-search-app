@@ -1,37 +1,48 @@
 
-<app-user-nav></app-user-nav>
 
-  
-<div class="jumbotron col-md-8 mx-auto">
+  <br>  
 
-  <div class="container">
+
+<div class=" col-md-8 mx-auto">
+
+  <div class="container ">
     <form [formGroup]="searchForm" (ngSubmit)="searchArticles(searchForm.value)">
           <div class="row">
-            <div class="col">
+            <div class="col input-group">
              <input type="text" placeholder="Search.." name="search" formControlName="search" class="form-control">
+            
+            <div class="input-group-append">
+              
+             <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
             </div>
-            <div class="col-auto">
-             <button type="submit" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
-            </div>
+          </div>
           </div>
         </form>
     </div>
-<br><br>
-    <div class="container">
-        
-  <div *ngFor="let article of mArticles">
-    <div class="card">
-      <h4 class="card-title">{{article.title}}</h4>
-      <h6 class="card-subtitle mb-2 text-muted">{{article.source.name}}</h6>
-      <img mat-card-image class="img-article" src={{article.urlToImage}} alt="">
-      <div class="card-body">
-        <span>
-          {{article.description}}
-        </span>
-      </div>
-      <a href={{article.url}} target="_blank" class="card-link" style="text-align:right"><i class="fa fa-eye" style="font-size:18px"> See Full articles here</i></a>
-    </div>
-    <br>
   </div>
-</div>
-</div>
+
+
+
+<br>
+        <div class="row" >
+       
+        <div  class=" card col-md-3 col-sm-4 offset-md-4 mx-5 my-3" *ngFor="let article of mArticles;let i=index">
+          <div class="row">
+                  <h4 class="card-title" >{{mArticles[i].title}}</h4><br>                </div>
+
+               <h6 class="card-subtitle mb-2 text-muted">{{mArticles[i].source.name}}</h6>
+                <div class="row">
+
+                  <img mat-card-image class="img-article" src={{mArticles[i].urlToImage}} alt="" style="width:100%">
+                </div>
+                  <div class="card-body">
+                    <p>
+                      {{article.description}}
+                    </p>
+                  </div>
+                  </div>
+          </div>
+    
+        
+
+
