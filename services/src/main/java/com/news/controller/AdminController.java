@@ -23,7 +23,7 @@ import com.news.service.Admin.AdminService;
 
 @RestController
 @RequestMapping("admin")
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AdminController extends GlobalErrorHandlerController {
 	Logger log = LoggerFactory.getLogger(JwtGenerator.class);
 
