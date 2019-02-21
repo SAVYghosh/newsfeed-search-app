@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -41,26 +43,26 @@ public class LoginAndSignupController extends GlobalErrorHandlerController{
 	Logger log=LoggerFactory.getLogger(JwtGenerator.class);
 	
 	@PostMapping("signup")
-	public String signup(@Valid @RequestBody User appuser)
+	public ResponseEntity<String> signup(@Valid @RequestBody User appuser)
 	{
 		appuser.setRoles("ROLE_USER");
 		appuser.setUserStatus(true);
 		appuser.setUserPassword(encoder.encode(appuser.getUserPassword()));
-		
-		return loginAndSignupService.saveUser(appuser);
+		String response=loginAndSignupService.saveUser(appuser);
+		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
 	@PostMapping("/login")
-	public String login(@RequestBody User appUser){
+	public ResponseEntity<String> login(@RequestBody User appUser){
 		if(loginAndSignupService.getUserStatus(appUser.getUserEmail())==true){
 		Authentication authentication =  authenticationManager.authenticate(
 		new UsernamePasswordAuthenticationToken(appUser.getUserEmail(),appUser.getUserPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtGenerator.generateToken(authentication);
-		return jwt;
+		return new ResponseEntity<String>(jwt,HttpStatus.OK);
 		}
 		else
 		{
-			return "blocked";
+			return new ResponseEntity<String>("blocked",HttpStatus.BAD_REQUEST);
 		}
 	}
 	

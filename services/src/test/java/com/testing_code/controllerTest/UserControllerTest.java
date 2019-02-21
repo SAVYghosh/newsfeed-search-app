@@ -43,7 +43,7 @@ public class UserControllerTest {
 
 	@Test
 	@WithMockUser(roles="USER")
-	 public void testForsaveSearch() throws Exception {
+	 public void testForsaveSearchPass() throws Exception {
 		
 		search.setSearchString("all");
 		user.setUserEmail("user@user.com");
@@ -53,5 +53,37 @@ public class UserControllerTest {
 				.contentType("application/json;charset=UTF-8")
 				)
 		.andExpect(status().isOk());	
+	 }
+	
+	@Test
+	@WithMockUser(roles="USER")
+	 public void testForsaveSearchFail() throws Exception {
+		
+		mockMvc.perform(post("/user/searchSave")
+				.content(mapper.writeValueAsString(search))
+				.contentType("application/json;charset=UTF-8")
+				)
+		.andExpect(status().isBadRequest());	
+	 }
+	
+	@Test
+	@WithMockUser(roles="USER")
+	 public void testForGetAllSearchHistory() throws Exception {
+		mockMvc.perform(get("/user/searchHistory/user@user.com"))
+		.andExpect(status().isOk());	
+	 }
+	@Test
+	@WithMockUser(roles="USER")
+	 public void testForDeleteSerchHistoryPass() throws Exception {
+		mockMvc.perform(get("/user/searchDelete/200"))
+		.andExpect(status().isOk())
+		.andExpect(content().string(containsString("deleted")));
+	 }
+	@Test
+	@WithMockUser(roles="USER")
+	 public void testForDeleteSerchHistoryFail() throws Exception {
+		mockMvc.perform(get("/user/searchDelete/1098"))
+		.andExpect(status().isOk())
+		.andExpect(content().string(containsString("Id does not exist")));
 	 }
 }
