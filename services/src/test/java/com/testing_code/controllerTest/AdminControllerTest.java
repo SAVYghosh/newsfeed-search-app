@@ -41,12 +41,6 @@ public class AdminControllerTest {
 		.andDo(print());
 	 }
 	
-	@Test
-	@WithMockUser(roles="ADMIN")
-	 public void testForGetUserFail() throws Exception {
-		mockMvc.perform(get("/admin/getUser/''"))
-		.andExpect(status().isBadGateway());
-	 }
 
 	
 	@Test

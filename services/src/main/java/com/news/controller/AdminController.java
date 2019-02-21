@@ -33,12 +33,9 @@ public class AdminController extends GlobalErrorHandlerController {
 	@GetMapping("getUser/{userEmail}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> getUser( @PathVariable("userEmail") String userEmail) {
-		log.info(userEmail);
-		if (!userEmail.isEmpty()) {
+		log.info("UserEmail->{}",userEmail);
 			User userDetails = adminService.getUser(userEmail);
 			return new ResponseEntity<User>(userDetails, HttpStatus.OK);
-		} else
-			return new ResponseEntity<String>("no email", HttpStatus.BAD_REQUEST);
 	}
 
 	@GetMapping("getAllUser")

@@ -43,13 +43,18 @@ public class UserController extends GlobalErrorHandlerController{
 	
 	@GetMapping("searchHistory/{userEmail}")
 	@PreAuthorize("hasRole('ROLE_USER')")
-		public List<Search> searchHistory(@PathVariable("userEmail") String userEmail){		
-			return userService.searchHistory(userEmail);	
+		public ResponseEntity<?> searchHistory(@PathVariable("userEmail") String userEmail){	
+		List<Search> searchList;
+		searchList=userService.searchHistory(userEmail);
+			return new ResponseEntity<List<Search>>(searchList, HttpStatus.OK);	
 			}
+	
+	
 	@GetMapping("searchDelete/{searchId}")
 	@PreAuthorize("hasRole('ROLE_USER')")
-	public String searchDelete(@PathVariable("searchId") Long searchId){
-		return userService.searchDelete(searchId);
+	public ResponseEntity<?> searchDelete(@PathVariable("searchId") Long searchId){
+		String response= userService.searchDelete(searchId);
+		return new ResponseEntity<String>(response,HttpStatus.OK);
 	}
 
 }
