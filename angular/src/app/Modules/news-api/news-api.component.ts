@@ -28,9 +28,9 @@ export class NewsApiComponent implements OnInit {
 	ngOnInit() {
 	//load articles
 	console.log("call article");
-	this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
-    //  //load news sources
-	this.newsapi.initSources().subscribe(data=> this.mSources = data['sources']);  
+	// this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
+    // //  //load news sources
+	// this.newsapi.initSources().subscribe(data=> this.mSources = data['sources']);  
 	this.searchForm = this.formBuilder.group({
 		search:new FormControl()
 	  });

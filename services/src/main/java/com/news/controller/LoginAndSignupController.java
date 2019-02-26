@@ -62,7 +62,7 @@ public class LoginAndSignupController extends GlobalErrorHandlerController{
 		}
 		else
 		{
-			return new ResponseEntity<String>("blocked",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("blocked",HttpStatus.OK);
 		}
 	}
 	

@@ -33,6 +33,7 @@ public class UserControllerTest {
 	ObjectMapper mapper;
 	Search search;
 	User user;
+	int i=2;
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
@@ -75,7 +76,8 @@ public class UserControllerTest {
 	@Test
 	@WithMockUser(roles="USER")
 	 public void testForDeleteSerchHistoryPass() throws Exception {
-		mockMvc.perform(get("/user/searchDelete/200"))
+		
+		mockMvc.perform(get("/user/searchDelete/"+i))
 		.andExpect(status().isOk())
 		.andExpect(content().string(containsString("deleted")));
 	 }

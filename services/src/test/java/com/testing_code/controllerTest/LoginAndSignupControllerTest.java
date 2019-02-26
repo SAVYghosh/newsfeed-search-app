@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,8 +44,12 @@ public class LoginAndSignupControllerTest {
 	}
 	@Test
 	 public void testSignupPass() throws Exception {
-		
-		user.setUserEmail("userSourav4@user.com");
+		Random rand = new Random();
+		 
+		int n = rand.nextInt(50)*4;
+	    System.out.println(n + "@mail.com");
+	    
+		user.setUserEmail(n + "@mail.com");
 		user.setUserName("sourav");
 		user.setUserPassword("User@10");
 		mockMvc.perform(post("/auth/signup")

@@ -3,7 +3,7 @@ import { browser, element, by } from 'protractor';
 export class GetUserPage{
     constructor(){}
 
-    navigateTo(){
+    navigateToAdmin(){
         return browser.get('/GetUser');
     }
     navigateToLogin(){
@@ -11,7 +11,7 @@ export class GetUserPage{
     }
 
     getPageTitle(){
-        return element(by.css('h3'));
+        return element(by.css('h6'));
     }
 
     setSearch(search: string){
@@ -27,5 +27,8 @@ export class GetUserPage{
     }
     clickBlock() {
         element(by.css('.btn-warning')).click();
+    }
+    clickUnBlock() {
+        element(by.css('.btn-outline-danger')).click();
     }
 }

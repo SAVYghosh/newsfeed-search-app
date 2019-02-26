@@ -2,3 +2,17 @@
 .jumbotron {
     background-color: white;
 }
+
+.fix-image{
+    object-fit: cover;
+    overflow: hidden;
+}
+.art-title{
+    padding: 4px;
+    color: rgb(57, 63, 65);
+
+}
+input:focus{
+    border-color: #1d1c1f;
+    box-shadow: 0 0 2px rgba(178, 88, 196, 0.4);
+}

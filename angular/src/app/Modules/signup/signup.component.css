@@ -13,3 +13,7 @@
 .jumbotron{
   background-color: rgb(255, 255, 255);
 }
+input:focus{
+  border-color: #1d1c1f;
+  box-shadow: 0 0 2px rgba(178, 88, 196, 0.4);
+}
