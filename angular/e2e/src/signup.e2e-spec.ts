@@ -29,9 +29,10 @@ xdescribe('Protractor Testing - Signup Testing', () => {
     })
 
     it('successfully register',()=>{
-        signupPage.setEmail("sudipq12@gmail.com");
+        var randomEmail=Math.floor(Math.random()*60)+1; 
+        signupPage.setEmail(randomEmail+'@mail.com');
         signupPage.setName("asdfgr");
-        signupPage.setPassword("ASDer!222");
+        signupPage.setPassword("ASdd!222");
         signupPage.clickSignup();
         // browser.wait(protractor.ExpectedConditions.alertIsPresent(),4000);
         // expect(browser.switchTo().alert().getText()).toEqual("Registration Sucessfull");

@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
         }
       },
       error=>{
-        alert("Something went wrong, try again");   
+        alert("Something went wrong, try again after sometime");   
       });
   }
 }

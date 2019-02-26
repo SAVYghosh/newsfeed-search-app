@@ -12,7 +12,7 @@ fdescribe('user dashbord testing',()=>{
         loginpage.navigateTo(); 
     });
 
-    it("history navigate testing",()=>{
+    it("history delete testing",()=>{
         
         loginpage.setEmail("user@user.com");
         loginpage.setPassword("User@10");
@@ -26,5 +26,13 @@ fdescribe('user dashbord testing',()=>{
         browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl()).toContain('http://localhost:4200/Usernav/SearchHistory');
     })
+    it("log out testing",()=>{
+        loginpage.setEmail("user@user.com");
+        loginpage.setPassword("User@10");
+        loginpage.clickLogin();
+        browser.pause(2000);
+        usernavpage.clickLogOut();
+        expect(browser.getCurrentUrl()).toContain('http://localhost:4200/Login');
 
+    });
 });

@@ -18,8 +18,7 @@ isDelete:Boolean;
     this.emailId=window.sessionStorage.getItem('email');
     this.newsapi.getSearch(this.emailId).subscribe(
       data=>{
-        this.SearchList=data;
-        
+        this.SearchList=data;     
       }
     )
   }

@@ -1,0 +1,6 @@
+com\testing_code\controllerTest\LoginAndSignupControllerTest.class
+com\testing_code\serviceTest\LoginAndSignupServiceTest.class
+com\testing_code\controllerTest\UserControllerTest.class
+com\testing_code\controllerTest\AdminControllerTest.class
+com\testing_code\serviceTest\UserServiceTest.class
+com\testing_code\serviceTest\AdminServiceTest.class

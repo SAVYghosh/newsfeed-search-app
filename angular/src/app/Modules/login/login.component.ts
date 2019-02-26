@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     };
     this.loginService.login(user).subscribe(
       data => {
+        console.log(data);
         if(data=="blocked"){
           this.isBlocked=true;
           new Promise((res) => {
@@ -64,15 +65,17 @@ export class LoginComponent implements OnInit {
       } 
       },
       error =>{
-        this.isWrongCredential=true;
-        new Promise((res) => {
-          setTimeout(() => {
-          this.isWrongCredential= false;
-          this.router.navigate(['Login']);
-          res();
-          }, 6000);
-          }) 
-      }
+        
+          this.isWrongCredential=true;
+          new Promise((res) => {
+            setTimeout(() => {
+            this.isWrongCredential= false;
+            this.router.navigate(['Login']);
+            res();
+            }, 6000);
+            }) 
+        }
+        
     );
   }
 

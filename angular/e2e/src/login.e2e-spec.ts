@@ -20,7 +20,7 @@ xdescribe('Protractor - Login testing', () => {
         expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/Signup');
     });
     it('check blocked user log in',()=>{
-        loginPage.setEmail("user2@user.com");
+        loginPage.setEmail("useuse@user.com");
         loginPage.setPassword("User@10");
         loginPage.clickLogin();
         expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/Login');
@@ -31,7 +31,7 @@ xdescribe('Protractor - Login testing', () => {
         loginPage.clickLogin();
         expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/Login');
     });
-    it('check successful user log in',()=>{
+    xit('check successful user log in',()=>{
         loginPage.setEmail("user@user.com");
         loginPage.setPassword("User@10");
         loginPage.clickLogin();

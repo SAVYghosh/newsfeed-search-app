@@ -15,14 +15,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 offset-md-3 shadow-lg p-3 mb-5 bg-white rounded">
-                <h1 class="card-title text-center">Sign Up</h1><hr>
+                <h1 id="signUpHead" class="card-title text-center">Sign Up</h1><hr>
                 <form [formGroup]="signUpForm" (ngSubmit)="onSignup(signUpForm.value)">
                 <div class="form-group">
                     <label><i class="fa fa-user "></i> Username:</label>
                     <input id="userName" type="text" name ="userName" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userName.errors }" />
                         <div id="nameError" *ngIf="checkInSubmission && check.userName.errors" class="invalid-feedback">
                             <div *ngIf="check.userName.errors.required">Username is required</div>
-                            <div *ngIf="check.userName.errors.minlength">Username min length must be 4</div>
+                            <div id="userNameMinLengthError" *ngIf="check.userName.errors.minlength">Username min length must be 4</div>
                             <div *ngIf="check.userName.errors.maxlength">Username min length must be 20</div>
                             <div *ngIf="check.userName.errors.pattern">Username can contains only alphabets</div>
 
@@ -34,7 +34,7 @@
                     <input id="userEmail" type="email" name="userEmail" formControlName="userEmail" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userEmail.errors }"/>
                     <div id="emailError" *ngIf="checkInSubmission && check.userEmail.errors " class="invalid-feedback">
                         <div *ngIf="check.userEmail.errors.required">Email is required</div>
-                        <div *ngIf="check.userEmail.errors.pattern">Email must be vaild</div>
+                        <div id="userEmailPatternError" *ngIf="check.userEmail.errors.pattern">Email must be vaild</div>
                     </div>
                 </div>
 
@@ -43,14 +43,14 @@
                     <input id="userPassword" type="password" name="userPassword" formControlName="userPassword" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userPassword.errors }"/>
                     <div id="passwordError" *ngIf="checkInSubmission && check.userPassword.errors" class="invalid-feedback">
                         <div *ngIf="check.userPassword.errors.required">Password is required</div>
-                        <div *ngIf="check.userPassword.errors.pattern">Password min size must be 6 an it contains one Uppercase,one lowercase,one digit one special characters </div>
+                        <div id="userPasswordPatternError" *ngIf="check.userPassword.errors.pattern">Password min size must be 6 an it contains one Uppercase,one lowercase,one digit one special characters </div>
                         <div *ngIf="check.userPassword.errors.maxLength">Password must be less than 12</div>
 
                     </div>
                 </div>     
                 <br>
               
-                <button type="submit" class="btn btn-outline-success" [ngClass]="{ 'disabled': checkInSubmission && signUpForm.invalid }" style="width: 100%">SignUp</button>
+                <button type="submit" id="signUpBut" class="btn btn-outline-success" [ngClass]="{ 'disabled': checkInSubmission && signUpForm.invalid }" style="width: 100%">SignUp</button>
                 <br>
                 </form>
                 <a routerLink="../Login" class="btn btn-link" style="width: 100%;">Already have an account? Log in here</a>

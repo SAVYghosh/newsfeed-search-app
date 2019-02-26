@@ -13,5 +13,8 @@ export class UserNav{
         element(by.id('1')).click();
     }
 
+    clickLogOut(){
+        element(by.css('#Logout')).click();
+    }
 
 }

@@ -14,11 +14,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 offset-md-3 shadow-lg p-3 mb-5 bg-white rounded">
-                   <h1 class="card-title text-center">Log In</h1> <hr>
+                   <h1 id="logInHead" class="card-title text-center">Log In</h1> <hr>
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
                     <div class="form-group">
                         <label> <i class="fa fa-envelope"></i> Email:</label>
-                        <input id="userEmail" type="email" name="userEmail" formControlName="userEmail" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userEmail.errors }"/>
+                        <input id="Email" type="email" name="userEmail" formControlName="userEmail" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userEmail.errors }"/>
                         <div id="emailError" *ngIf="checkInSubmission && check.userEmail.errors " class="invalid-feedback">
                                 <div *ngIf="check.userEmail.errors.required">Email is required</div>
                                 <div *ngIf="check.userEmail.errors.pattern">Email must be vaild</div>
@@ -37,7 +37,7 @@
                         </div>
                         <br>
                     <div class="form-group">
-                        <button [ngClass]="{ 'disabled': checkInSubmission && loginForm.invalid }" class="btn btn-outline-success" style="width: 100%">Sign In</button>
+                        <button [ngClass]="{ 'disabled': checkInSubmission && loginForm.invalid }" id="signInbut" class="btn btn-outline-success" style="width: 100%">Sign In</button>
                         
                         <br>
                         <a id="signupButton" class="btn btn-link" routerLink="../Signup" style="width: 100%">Dont have an account?Sign Up here</a>

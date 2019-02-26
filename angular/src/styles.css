@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css"; 
+
+.logo{
+    color: white;
+}
+.navbtn{
+    padding:10px;
+    font-size: 15px;
+}
+input:focus {
+    border-color: #cfdc00;
+    box-shadow: 0 0 5px rgba(207, 220, 0, 0.4);
+}

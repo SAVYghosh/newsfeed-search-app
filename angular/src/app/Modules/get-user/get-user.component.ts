@@ -38,9 +38,7 @@ export class GetUserComponent implements OnInit {
       this.getUserService.getAllUser().subscribe(
         data => {
           this.analystList=data;   
-        });
-
-          
+        });    
       }
       
       searchUser(data){  
@@ -48,7 +46,7 @@ export class GetUserComponent implements OnInit {
         this.searchedList=[];
         console.log("search call");
         this.analystList.forEach(user=>{
-          if(user.userName.includes(data.Name)){
+          if(user.userEmail.includes(data.Name)){
           this.searchedList.push(user);
           }
         })
@@ -96,5 +94,24 @@ export class GetUserComponent implements OnInit {
             }) 
            this.searchedList[i].userStatus=false;
             alert("user blocked");
+      }
+
+      unblockSearchUser(i:number,user){
+        this.getUserService.unblockUser(user).subscribe(
+          data=>{
+
+          }
+        );
+        this.searchedList[i].userStatus=true;
+        alert("user unblocked");
+      }
+      unblockUser(i:number,user){
+        this.getUserService.unblockUser(user).subscribe(
+          data=>{
+
+          }
+        );
+        this.analystList[i].userStatus=true;
+        alert("user unblocked");
       }
 }

@@ -24,24 +24,27 @@
 
 
 <br>
-        <div class="row" >
-       
-        <div  class=" card col-md-3 col-sm-4 offset-md-4 mx-5 my-3" *ngFor="let article of mArticles;let i=index">
-          <div class="row">
-                  <h4 class="card-title" >{{mArticles[i].title}}</h4><br>                </div>
-
-               <h6 class="card-subtitle mb-2 text-muted">{{mArticles[i].source.name}}</h6>
-                <div class="row">
-
-                  <img mat-card-image class="img-article" src={{mArticles[i].urlToImage}} alt="" style="width:100%">
-                </div>
-                  <div class="card-body">
-                    <p>
-                      {{article.description}}
-                    </p>
-                  </div>
-                  </div>
-          </div>
+<div class="row col-md-8 col-sm-8 offset-md-2 offset-sm-1" >    
+  <div  class="mx-2 my-4 shadow-lg p-3  bg-white" *ngFor="let article of mArticles;let i=index">
+    
+      <h4 class=" art-title" >{{mArticles[i].title}}</h4>
+    <h6 class=" text-muted">{{mArticles[i].source.name}}</h6>
+    <div class="row">
+    <div>
+     <img mat-card-image class="img-article fix-image" src={{mArticles[i].urlToImage}} alt="" style="width:340px;height:300px">
+    </div>
+    <div class=" mx-4 col-md-6 col-sm-10">
+      <p>
+        {{article.description}}
+      </p>
+      <a href={{article.url}} target="_blank" class="card-link ml-auto mb-2">
+        ... Read
+        More
+      </a>
+    </div>
+  </div>
+ </div>
+</div>
     
         
 

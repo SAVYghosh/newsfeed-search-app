@@ -7,7 +7,7 @@ export class SignupPage{
     }
 
     getPageTitleText(){
-       return element(by.css('h1'));
+       return element(by.css('#signUpHead'));
     }
 
     setName(userName: string) {
@@ -25,7 +25,7 @@ export class SignupPage{
         element(by.id('userPassword')).sendKeys(userPassword);
     }
     clickSignup() {
-        element(by.css('.btn-outline-success')).click();
+        element(by.css('#signUpBut')).click();
     }
     navigateToLogin() {
         element(by.css('a')).click();

@@ -16,4 +16,8 @@ export class GetUserService {
   blockUser(userEmail:string){
     return this.http.get("http://localhost:8085/admin/blockUser/"+userEmail,{responseType:'text'});
   }
+  unblockUser(userEmail:string){
+    return this.http.get("http://localhost:8085/admin/unblockUser/"+userEmail,{responseType:'text'});
+
+  }
 }

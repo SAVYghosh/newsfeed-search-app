@@ -2,7 +2,7 @@ import { browser, by, element } from 'protractor';
 
 export class LoginPage {
     getPageTitleText() {
-        return element(by.css('h1'));
+        return element(by.css('#logInHead'));
     }
 constructor(){}
 navigateTo(){
@@ -13,8 +13,8 @@ navigateToSignup() {
     element(by.id('signupButton')).click();
 }
 setEmail(userEmail: string) {
-    element(by.id('userEmail')).clear();
-    element(by.id('userEmail')).sendKeys(userEmail);
+    element(by.id('Email')).clear();
+    element(by.id('Email')).sendKeys(userEmail);
 }
 
 setPassword(userPassword: string) {
@@ -23,6 +23,6 @@ setPassword(userPassword: string) {
 }
 
 clickLogin() {
-    element(by.css('.btn-outline-success')).click();
+    element(by.css('#signInbut')).click();
 }
 }

@@ -13,7 +13,7 @@ xdescribe('Protractor Testing- GetUser Testing',()=>{
 
     
     
-    it('check title when get user page load',()=>{
+   it('check title when get user page load',()=>{
         loginPage.setEmail("admin@admin.com");
         loginPage.setPassword("Admin@10");
         loginPage.clickLogin();
@@ -32,11 +32,11 @@ xdescribe('Protractor Testing- GetUser Testing',()=>{
     //     getuserPage.clickSearch();
     //     expect(getuserPage.getUserNameFromTable().getText()).toEqual('wewewe');
     // })
-    it('block user works properly',()=>{
+    it('block and unblock user works properly',()=>{
         loginPage.setEmail("admin@admin.com");
         loginPage.setPassword("Admin@10");
         loginPage.clickLogin();
-        getuserPage.setSearch("wewewe");
+        getuserPage.setSearch("sourav");
         getuserPage.clickSearch();
         getuserPage.clickBlock();
         browser.pause(2000);
@@ -44,5 +44,26 @@ xdescribe('Protractor Testing- GetUser Testing',()=>{
         browser.wait(protractor.ExpectedConditions.alertIsPresent(),time);
         expect(browser.switchTo().alert().getText()).toEqual('user blocked');
         browser.switchTo().alert().accept();
-    })
+
+        // getuserPage.clickUnBlock();
+        // browser.pause(2000);
+        // var time=8000;
+        // browser.wait(protractor.ExpectedConditions.alertIsPresent(),time);
+        // expect(browser.switchTo().alert().getText()).toEqual('user unblocked');
+        // browser.switchTo().alert().accept();
+    });
+
+    it('unblock user works properly',()=>{
+        loginPage.setEmail("admin@admin.com");
+        loginPage.setPassword("Admin@10");
+        loginPage.clickLogin();
+        getuserPage.setSearch("sourav");
+        getuserPage.clickSearch();
+        getuserPage.clickUnBlock();
+        browser.pause(2000);
+        var time=8000;
+        browser.wait(protractor.ExpectedConditions.alertIsPresent(),time);
+        expect(browser.switchTo().alert().getText()).toEqual('user unblocked');
+        browser.switchTo().alert().accept();
+})
 })
