@@ -49,12 +49,9 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 4. Right click on the right hand side blank area.
 5 .Select "Git Bash Here".
 6. Run following command:
-
-git clone https://code.cognizant.com/125546/tShell.git
-
-For Example,
-git clone https://code.cognizant.com/125546/newsfeed-search-app.git
-
+    ```
+    git clone https://code.cognizant.com/125546/newsfeed-search-app.git
+    ```
 
 ## To start the Mysql Database
 
