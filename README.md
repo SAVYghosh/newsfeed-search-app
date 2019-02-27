@@ -73,15 +73,15 @@ git clone https://code.cognizant.com/125546/newsfeed-search-app.git
 
 1. Select your newsfeed-search-app folder and open angular folder.
 2. Press shift and right click and open poweshell and in the terminal run following commands 
-    '''
+    ```
     npm install.
-    '''
-    '''
+    ```
+    ```
     npm i bootstrap
-    '''
-    '''
+    ```
+    ```
     npm install jquery
-    '''
+    ```
     
 3. For running on local host server run this command ng serve --open.
 4. Run ng build prod to create dist file.
