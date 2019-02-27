@@ -50,7 +50,7 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 5 .Select "Git Bash Here".
 6. Run following command:
     ```
-    git clone https://code.cognizant.com/125546/newsfeed-search-app.git
+    git clone https://code.cognizant.com/729715/newsfeed-search-app.git
     ```
 
 ## To start the Mysql Database
