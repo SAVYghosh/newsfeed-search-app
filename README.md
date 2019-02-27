@@ -73,15 +73,7 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
     ```
     npm install
     ```
-    ```
-    npm i bootstrap
-    ```
-    ```
-    npm install jquery
-    ```
-    ```
-    npm i font-awesome
-    ```
+   
     
     
 3. For running on local host server run this command ng serve --open.
