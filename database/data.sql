@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mydb`;
+CREATE DATABASE  IF NOT EXISTS `newsfeeddb` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `newsfeeddb`;
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
--- Host: localhost    Database: mydb
+-- Host: localhost    Database: newsfeeddb
 -- ------------------------------------------------------
 -- Server version	5.1.45-community
 
