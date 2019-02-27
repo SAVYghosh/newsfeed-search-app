@@ -71,7 +71,7 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 1. Select your newsfeed-search-app folder and open angular folder.
 2. Press shift and right click and open poweshell and in the terminal run following commands 
     ```
-    npm install.
+    npm install
     ```
     ```
     npm i bootstrap
@@ -79,6 +79,10 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
     ```
     npm install jquery
     ```
+    ```
+    npm i font-awesome
+    ```
+    
     
 3. For running on local host server run this command ng serve --open.
 4. Run ng build prod to create dist file.
