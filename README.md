@@ -29,3 +29,12 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 2. Search News Analyst
 3. Blacklist News Analyst
 4. Logout
+
+
+## Softwares Required
+
+1. Visual Studio Code
+2. Eclipse
+3. MySql Workbench
+4. Git 
+5 .MySql Server
