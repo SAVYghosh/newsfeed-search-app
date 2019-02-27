@@ -37,4 +37,52 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 2. Eclipse
 3. MySql Workbench
 4. Git 
-5 .MySql Server
+5. MySql Server
+ 
+
+## Get the project using Git
+
+
+1. Create a folder in D: drive in which you want to download the project.
+2. Open Windows Explorer.
+3. Go to the folder you created.
+4. Right click on the right hand side blank area.
+5 .Select "Git Bash Here".
+6. Run following command:
+
+git clone https://code.cognizant.com/125546/tShell.git
+
+For Example,
+git clone https://code.cognizant.com/125546/newsfeed-search-app.git
+
+
+## To start the Mysql Database
+
+1. Inside your created folder project, goto "database" folder.
+2. Inside database folder there will be script file with the name "data.sql".
+3. Import the sql file in mysql.
+
+
+## To run Services
+
+1. Run mvn clean project in command prompt.
+2. You will get all the required dependency which is inside pom.xml in your eclipse project.
+3. This will show the success test cases and it will build .war file.
+
+## To run UI Part
+
+1. Select your newsfeed-search-app folder and open angular folder.
+2. Press shift and right click and open poweshell and in the terminal run following commands 
+    '''
+    npm install.
+    '''
+    '''
+    npm i bootstrap
+    '''
+    '''
+    npm install jquery
+    '''
+    
+3. For running on local host server run this command ng serve --open.
+4. Run ng build prod to create dist file.
+
