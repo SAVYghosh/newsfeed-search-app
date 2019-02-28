@@ -76,7 +76,6 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 3. For running on local host server run this command ng serve --open.
 4. Run 
  ```ng build --prod```
-
     to create dist folder.
 	
 5. run 
@@ -85,6 +84,7 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 	```
 	to run karma tests
 6. run following command to start webdriver
+
 	```  webdriver-manager clean ```
 
 	```  webdriver-manager update --versions.chrome=<chrome version> --proxy http://proxy.cognizant.com:6050 ```
