@@ -11,12 +11,12 @@ export class UserNavComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['Usernav/News']);   
+    this.router.navigate(['Usernav/News']);
 
   }
-  logout(){
-       window.sessionStorage.clear();
+  logout() {
     window.sessionStorage.clear();
-		   window.location.reload();
-		} 
+    window.sessionStorage.clear();
+    window.location.reload();
+  }
 }

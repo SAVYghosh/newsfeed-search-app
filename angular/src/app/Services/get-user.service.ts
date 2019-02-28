@@ -9,15 +9,15 @@ export class GetUserService {
 
   constructor(private http: HttpClient) { }
 
-    getAllUser() {
+  getAllUser() {
     return this.http.get<Array<User>>("http://localhost:8085/admin/getAllUser");
   }
 
-  blockUser(userEmail:string){
-    return this.http.get("http://localhost:8085/admin/blockUser/"+userEmail,{responseType:'text'});
+  blockUser(userEmail: string) {
+    return this.http.get("http://localhost:8085/admin/blockUser/" + userEmail, { responseType: 'text' });
   }
-  unblockUser(userEmail:string){
-    return this.http.get("http://localhost:8085/admin/unblockUser/"+userEmail,{responseType:'text'});
+  unblockUser(userEmail: string) {
+    return this.http.get("http://localhost:8085/admin/unblockUser/" + userEmail, { responseType: 'text' });
 
   }
 }

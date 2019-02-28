@@ -8,9 +8,9 @@ describe('NewsApiComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsApiComponent ]
+      declarations: [NewsApiComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

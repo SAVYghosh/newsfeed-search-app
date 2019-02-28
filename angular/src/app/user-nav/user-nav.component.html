@@ -1,22 +1,22 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark shadow-sm p-3 mb-5 bg-dark">
+  <a class="navbar-brand" href="#">Cognizant News</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
 
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark shadow-sm p-3 mb-5 bg-dark">
-      <a class="navbar-brand" href="#">Cognizant News</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>   
-      <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
-        
-              <li class="nav-item">
-                <a class="nav-link" routerLink="News">News</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="history" routerLink="SearchHistory">Search History</a>
-              </li>
-            </ul>
-            <span class="navbar-text">
-                <button type="submit" class="btn btn-danger" (click)="logout()" id="Logout">Logout</button>
-              </span>
-        </div>
-    </nav>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="News">News</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="history" routerLink="SearchHistory">Search History</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <button type="submit" class="btn btn-danger" (click)="logout()" id="Logout">Logout</button>
+    </span>
+  </div>
+</nav>
 <router-outlet></router-outlet>

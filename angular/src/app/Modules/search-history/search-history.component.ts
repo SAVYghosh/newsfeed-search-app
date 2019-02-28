@@ -9,35 +9,34 @@ import { Search } from 'src/app/Models/Search';
   styleUrls: ['./search-history.component.css']
 })
 export class SearchHistoryComponent implements OnInit {
-emailId:String;
-SearchList: Search[];
-isDelete:Boolean;
-  constructor(private newsapi: NewsApiService,private router: Router) { }
+  emailId: String;
+  SearchList: Search[];
+  isDelete: Boolean;
+  constructor(private newsapi: NewsApiService, private router: Router) { }
 
   ngOnInit() {
-    this.emailId=window.sessionStorage.getItem('email');
+    this.emailId = window.sessionStorage.getItem('email');
     this.newsapi.getSearch(this.emailId).subscribe(
-      data=>{
-        this.SearchList=data;     
+      data => {
+        this.SearchList = data;
       }
     )
   }
 
-  deleteSearch(i:number, searchId){
-    this.SearchList.splice(i,1);
+  deleteSearch(i: number, searchId) {
+    this.SearchList.splice(i, 1);
     this.newsapi.deleteSearch(searchId).subscribe(
-      data=>
-      {
+      data => {
       }
     )
     alert("one history deleted");
-    this.isDelete=true;
-    new Promise((res) => {
-      setTimeout(() => {
-      this.isDelete= false;
-      res();
-      }, 3000);
-      })
+    this.isDelete = true;
+    new Promise((res) => {
+      setTimeout(() => {
+        this.isDelete = false;
+        res();
+      }, 3000);
+    })
   }
 
 

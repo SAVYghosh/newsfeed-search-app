@@ -9,34 +9,35 @@ import { SearchHistoryComponent } from './Modules/search-history/search-history.
 import { UserNavComponent } from './user-nav/user-nav.component';
 
 const routes: Routes = [
-{
-  path:'Signup',
-  component:SignupComponent
-},
-{
-  path:'Login',
-  component: LoginComponent
-},
-{
-  path:'GetUser',
-  component: GetUserComponent,
-  canActivate : [AuthGuardGuard]
-},
+  {
+    path: 'Signup',
+    component: SignupComponent
+  },
+  {
+    path: 'Login',
+    component: LoginComponent
+  },
+  {
+    path: 'GetUser',
+    component: GetUserComponent,
+    canActivate: [AuthGuardGuard]
+  },
 
-{
-  path: 'Usernav',
-  component:UserNavComponent,
-  canActivate:[AuthGuardGuard],
-     children:[
-     {
-       path:'SearchHistory',
-      component: SearchHistoryComponent
+  {
+    path: 'Usernav',
+    component: UserNavComponent,
+    canActivate: [AuthGuardGuard],
+    children: [
+      {
+        path: 'SearchHistory',
+        component: SearchHistoryComponent
       },
-     {
-       path:'News',
-       component: NewsApiComponent,
+      {
+        path: 'News',
+        component: NewsApiComponent,
       }
-]}
+    ]
+  }
 
 ];
 

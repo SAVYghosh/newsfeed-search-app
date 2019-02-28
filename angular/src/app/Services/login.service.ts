@@ -6,12 +6,12 @@ import { User } from '../Models/User';
   providedIn: 'root'
 })
 export class LoginService {
-useUserEmail:String;
+  useUserEmail: String;
   constructor(private http: HttpClient) { }
 
-    login(user : User) {
-    this.useUserEmail=user.userEmail;
-    return this.http.post("http://localhost:8085/auth/login",user,{responseType:'text'});
+  login(user: User) {
+    this.useUserEmail = user.userEmail;
+    return this.http.post("http://localhost:8085/auth/login", user, { responseType: 'text' });
   }
 
 }
