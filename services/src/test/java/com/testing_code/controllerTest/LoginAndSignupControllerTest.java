@@ -156,7 +156,12 @@ public class LoginAndSignupControllerTest {
 				.content(mapper.writeValueAsString(user))
 				.contentType("application/json;charset=UTF-8")
 				)
+<<<<<<< HEAD
 		.andExpect(status().isBadRequest());	
+=======
+				.andExpect(status().isOk());	
+	
+>>>>>>> 26c32aaee9e62bc2183257b873b842e23fd96d9f
 	 }
 	@Test
 	 public void testLoginFailWrongEmail() throws Exception {
