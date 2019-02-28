@@ -1,77 +1,70 @@
-
 <app-admin-nav></app-admin-nav>
 
 
-      <h6 style="text-align: center">User Details:</h6>
-      <div *ngIf="isBlock"class="alert alert-danger">
-          <strong>User Blocked</strong>
-          </div>
-          <div *ngIf="isSearchBlock"class="alert alert-danger">
-              <strong>User Blocked</strong>
-              </div>
-              
-    
-          <div class="container">
-                  <form [formGroup]="searchForm" (ngSubmit)="searchUser(searchForm.value)">
-                      <div class="row">
-                          <div class="col input-group">
-                              <input id="search" type="search" placeholder="Search.." name="Name" formControlName="Name" class="form-control" >
-                              <div class="input-group-append">
-                          <button type="search" class="btn btn-success"><span class="fa fa-search"></span></button>
-                          </div>
-                        </div>
-                      </div>
-                  </form>
-                  <br>
+<h6 style="text-align: center">User Details:</h6>
+<div *ngIf="isBlock"class="alert alert-danger">
+  <strong>User Blocked</strong>
+</div>
+<div *ngIf="isSearchBlock" class="alert alert-danger">
+  <strong>User Blocked</strong>
+</div>
 
 
-            <table class="table table-striped table-light table-hover col-sm-12"  *ngIf="!issearched">
-              <thead>
-                <tr class="table-info">
-                    <th>#</th>
-                  <th>Email</th>
-                  <th>Block</th>
-                </tr>  
-              </thead>
-
-              <tbody *ngFor="let Alist of analystList, let i=index">
-                <tr scope="row" >
-                    <td  > {{i+1}}</td>
-                  <td>  <strong>{{Alist.userEmail}}</strong></td>
-                  <td> <button *ngIf="Alist.userStatus" name="button_{{i}}" class="btn btn-warning" (click)="blockUser(i,Alist.userEmail)"> <i class="fa fa-user-times"></i>&nbsp;&nbsp; Block &nbsp;</button>      
-                    <button *ngIf="!Alist.userStatus" name="ubutton_{{i}}" class="btn btn-outline-danger" (click)="unblockUser(i,Alist.userEmail)">&nbsp;<i class="fa fa-ban"></i>&nbsp;UnBlock</button> </td>  
-                </tr>
-              </tbody>
-            </table>
-              
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="searchUser(searchForm.value)">
+    <div class="row">
+      <div class="col input-group">
+        <input id="search" type="search" placeholder="Search.." name="Name" formControlName="Name" class="form-control">
+        <div class="input-group-append">
+          <button type="search" class="btn btn-success"><span class="fa fa-search"></span></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br>
 
 
+  <table class="table table-striped table-light table-hover col-md-8 col-sm-11 offset-md-2" *ngIf="!issearched">
+    <thead>
+      <tr class="table-info">
+        <th>Details</th>
+        <th>Block</th>
+      </tr>
+    </thead>
 
+    <tbody *ngFor="let Alist of analystList, let i=index">
+      <tr scope="row">
+        <td style="width: 1px"> <strong style="width:10px">{{Alist.userEmail}}</strong> <br><p class="text-muted"> {{Alist.userName}}</p></td>
+        <td style="width: 1px"> <button *ngIf="Alist.userStatus" name="button_{{i}}" class="btn btn-warning"
+            (click)="blockUser(i,Alist.userEmail)"> <i class="fa fa-user-times"></i>&nbsp;&nbsp; Block &nbsp;</button>
+          <button *ngIf="!Alist.userStatus" name="ubutton_{{i}}" class="btn btn-outline-danger"
+            (click)="unblockUser(i,Alist.userEmail)">&nbsp;<i class="fa fa-ban"></i>&nbsp;UnBlock</button> </td>
+      </tr>
+    </tbody>
+  </table>
 
+  <table class="table table-hover" *ngIf="issearched">
+    <thead>
+      <tr class="table-info">
+        <th>#</th>
+        <th>Email</th>
+        <th> Block</th>
+      </tr>
 
+    </thead>
+    <tbody>
+      <tr scope="row" *ngFor="let Slist of searchedList, let i=index">
+        <td> {{i+1}}</td>
+        <td id="{{i}}"><strong> {{Slist.userEmail}} </strong></td>
+        <td> <button *ngIf="Slist.userStatus" name="buttont_{{i}}" class="btn btn-warning"
+            (click)="blockSearchUser(i,Slist.userEmail)"><i class="fa fa-user-times"></i>Block</button>
+          <button *ngIf="!Slist.userStatus" name="ubuttont_{{i}}" class="btn btn-outline-danger"
+            (click)="unblockSearchUser(i,Slist.userEmail)">&nbsp;<i class="fa fa-ban"></i>&nbsp;Unblock</button> </td>
+      </tr>
+    </tbody>
 
-            <table class="table table-hover"  *ngIf="issearched">
-                <thead>
-                  <tr class="table-info">
-                      <th>#</th>
-                    <th>Email</th>
-                  <th> Block</th>
-                </tr> 
-                   
-                </thead>
-              <tbody>
-                  <tr scope="row" *ngFor="let Slist of searchedList, let i=index">
-                      <td > {{i+1}}</td>
-                    <td id="{{i}}"><strong>  {{Slist.userEmail}} </strong></td>
-                    <td> <button *ngIf="Slist.userStatus" name="buttont_{{i}}" class="btn btn-warning" (click)="blockSearchUser(i,Slist.userEmail)"><i class="fa fa-user-times"></i>Block</button>      
-                      <button *ngIf="!Slist.userStatus" name="ubuttont_{{i}}" class="btn btn-outline-danger" (click)="unblockSearchUser(i,Slist.userEmail)">&nbsp;<i class="fa fa-ban"></i>&nbsp;Unblock</button> </td>        
-                     </tr>
-                </tbody>
-
-              </table>
-              <div *ngIf="isFound"class="alert alert-danger">
-                  <strong>No result found</strong>
-                  </div>
-            </div>
-
-    
+  </table>
+  <div *ngIf="isFound"class="alert alert-danger">
+    <strong>No result found</strong>
+  </div>
+</div>

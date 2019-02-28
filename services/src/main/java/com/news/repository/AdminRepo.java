@@ -11,7 +11,6 @@ import com.news.entity.User;
 @Repository
 public interface AdminRepo extends JpaRepository<User,Long>{
 	User findByUserEmail(String userEmail);
-	
 	@Query("Select u from User u where u.roles='ROLE_USER'")
 	List<User> findAllByRoles(); 
 	

@@ -16,30 +16,30 @@ fdescribe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [LoginComponent],
       providers: [LoginService],
       imports: [ReactiveFormsModule, HttpClientModule, RouterTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    loginService= fixture.debugElement.injector.get(LoginService);
+    loginService = fixture.debugElement.injector.get(LoginService);
     fixture.detectChanges();
   }));
 
- 
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('is form valid', () =>{
-  
+  it('is form valid', () => {
 
-    let email=component.loginForm.controls['userEmail'];
+
+    let email = component.loginForm.controls['userEmail'];
     email.setValue("asd@asd.asd");
 
-    let pass=component.loginForm.controls['userPassword'];
+    let pass = component.loginForm.controls['userPassword'];
     pass.setValue("Asd123!!");
 
     expect(component.loginForm.valid).toBeTruthy();
@@ -47,41 +47,40 @@ fdescribe('LoginComponent', () => {
 
 
 
-  it('is form invalid - invalid data', () =>{
+  it('is form invalid - invalid data', () => {
 
-    let email=component.loginForm.controls['userEmail'];
+    let email = component.loginForm.controls['userEmail'];
     email.setValue("");
 
-    let pass=component.loginForm.controls['userPassword'];
+    let pass = component.loginForm.controls['userPassword'];
     pass.setValue("1Aa!");
 
     expect(component.loginForm.valid).toBeFalsy();
   });
 
-  it('is form invalid - invalid email', () =>{
+  it('is form invalid - invalid email', () => {
 
-    let email=component.loginForm.controls['userEmail'];
+    let email = component.loginForm.controls['userEmail'];
     email.setValue("aaaa");
 
-    let pass=component.loginForm.controls['userPassword'];
+    let pass = component.loginForm.controls['userPassword'];
     pass.setValue("1Aaaaaaa");
 
     expect(component.loginForm.valid).toBeFalsy();
   });
 
-  it('service check',()=>{
+  it('service check', () => {
     let response: any;
-    let user= new User();
+    let user = new User();
 
-    let spy=spyOn(loginService,'login').and.returnValue(of({status:200}));
-    loginService.login(user).subscribe(data=>
-      {
-        response=data;
-      });
+    let spy = spyOn(loginService, 'login').and.returnValue(of({ status: 200 }));
+    loginService.login(user).subscribe(data => {
+      response = data;
+    });
 
-      fixture.debugElement.query(By.css('form')).triggerEventHandler('signInbut',null);
-      expect(response).toEqual({status:200});
-      expect(spy).toHaveBeenCalledTimes(1);
+    fixture.debugElement.query(By.css('form')).triggerEventHandler('signInbut', null);
+    expect(response).toEqual({ status: 200 });
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
 });

@@ -1,46 +1,56 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a class="navbar-brand" href="#">Cognizant News</a>
-    
-  </nav>
+
+</nav>
 <div class="jumbotron">
-        <div>
-                <div *ngIf="isBlocked" class="alert alert-danger">
-                <strong>You are blocked by admin!</strong>
-                </div>
-                <div *ngIf="isWrongCredential"class="alert alert-danger">
-                <strong>Wrong Credential</strong>
-                </div>
+    <div>
+        <div *ngIf="isBlocked" class="alert alert-danger">
+            <strong>You are blocked by admin!</strong>
         </div>
+        <div *ngIf="isWrongCredential"class="alert alert-danger">
+            <strong>Wrong Credential</strong>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-5 offset-md-3 shadow-lg p-3 mb-5 bg-white rounded">
-                   <h1 id="logInHead" class="card-title text-center">Log In</h1> <hr>
-                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+                <h1 id="logInHead" class="card-title text-center">Log In</h1>
+                <hr>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
                     <div class="form-group">
                         <label> <i class="fa fa-envelope"></i> Email:</label>
-                        <input id="Email" type="email" name="userEmail" formControlName="userEmail" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userEmail.errors }"/>
-                        <div id="emailError" *ngIf="checkInSubmission && check.userEmail.errors " class="invalid-feedback">
-                                <div *ngIf="check.userEmail.errors.required">Email is required</div>
-                                <div *ngIf="check.userEmail.errors.pattern">Email must be vaild</div>
+                        <input id="Email" type="email" name="userEmail" formControlName="userEmail" class="form-control"
+                            [ngClass]="{ 'is-invalid': checkInSubmission && check.userEmail.errors }" />
+                        <div id="emailError" *ngIf="checkInSubmission && check.userEmail.errors "
+                            class="invalid-feedback">
+                            <div *ngIf="check.userEmail.errors.required">Email is required</div>
+                            <div *ngIf="check.userEmail.errors.pattern">Email must be vaild</div>
 
-                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="strong"><i class="fa fa-lock"></i> Password:</label>
-                        <input id="userPassword" type="password" name="userPassword" formControlName="userPassword" class="form-control" [ngClass]="{ 'is-invalid': checkInSubmission && check.userPassword.errors }"/>
-                        <div id="passwordError" *ngIf="checkInSubmission && check.userPassword.errors" class="invalid-feedback">
-                                <div *ngIf="check.userPassword.errors.required">Password is required</div>
-                                <div *ngIf="check.userPassword.errors.pattern">Password must contain atleast one uppercase,one Lowercase,one digit , one special character and minimum and maximum length should be 8 and 16</div>
-    
-                            </div>
+                        <input id="userPassword" type="password" name="userPassword" formControlName="userPassword"
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': checkInSubmission && check.userPassword.errors }" />
+                        <div id="passwordError" *ngIf="checkInSubmission && check.userPassword.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="check.userPassword.errors.required">Password is required</div>
+                            <div *ngIf="check.userPassword.errors.pattern">Password must contain atleast one
+                                uppercase,one Lowercase,one digit , one special character and minimum and maximum length
+                                should be 8 and 16</div>
+
                         </div>
-                        <br>
+                    </div>
+                    <br>
                     <div class="form-group">
-                        <button [ngClass]="{ 'disabled': checkInSubmission && loginForm.invalid }" id="signInbut" class="btn btn-outline-success" style="width: 100%">Sign In</button>
-                        
+                        <button [ngClass]="{ 'disabled': checkInSubmission && loginForm.invalid }" id="signInbut"
+                            class="btn btn-outline-success" style="width: 100%">Sign In</button>
+
                         <br>
-                        <a id="signupButton" class="btn btn-link" routerLink="../Signup" style="width: 100%">Dont have an account?Sign Up here</a>
+                        <a id="signupButton" class="btn btn-link" routerLink="../Signup" style="width: 100%">Dont have
+                            an account?Sign Up here</a>
                     </div>
                 </form>
             </div>

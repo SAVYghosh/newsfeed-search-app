@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.hamcrest.core.StringContains.containsString;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +23,7 @@ import com.news.entity.Search;
 import com.news.entity.User;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=App.class)
+@SpringBootTest(classes = App.class)
 public class UserControllerTest {
 
 	@Autowired
@@ -33,59 +32,53 @@ public class UserControllerTest {
 	ObjectMapper mapper;
 	Search search;
 	User user;
-	int i=2;
+	int i = 2;
+
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-		mapper=new ObjectMapper();
-		search= new Search();
-		user=new User();
+		mapper = new ObjectMapper();
+		search = new Search();
+		user = new User();
 	}
 
 	@Test
-	@WithMockUser(roles="USER")
-	 public void testForsaveSearchPass() throws Exception {
-		
+	@WithMockUser(roles = "USER")
+	public void testForsaveSearchPass() throws Exception {
+
 		search.setSearchString("all");
 		user.setUserEmail("user@user.com");
 		search.setUser(user);
-		mockMvc.perform(post("/user/searchSave")
-				.content(mapper.writeValueAsString(search))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isOk());	
-	 }
-	
+		mockMvc.perform(post("/user/searchSave").content(mapper.writeValueAsString(search))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isOk());
+	}
+
 	@Test
-	@WithMockUser(roles="USER")
-	 public void testForsaveSearchFail() throws Exception {
-		
-		mockMvc.perform(post("/user/searchSave")
-				.content(mapper.writeValueAsString(search))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
-	
+	@WithMockUser(roles = "USER")
+	public void testForsaveSearchFail() throws Exception {
+
+		mockMvc.perform(post("/user/searchSave").content(mapper.writeValueAsString(search))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
+
 	@Test
-	@WithMockUser(roles="USER")
-	 public void testForGetAllSearchHistory() throws Exception {
-		mockMvc.perform(get("/user/searchHistory/user@user.com"))
-		.andExpect(status().isOk());	
-	 }
+	@WithMockUser(roles = "USER")
+	public void testForGetAllSearchHistory() throws Exception {
+		mockMvc.perform(get("/user/searchHistory/user@user.com")).andExpect(status().isOk());
+	}
+
 	@Test
-	@WithMockUser(roles="USER")
-	 public void testForDeleteSerchHistoryPass() throws Exception {
-		
-		mockMvc.perform(get("/user/searchDelete/"+i))
-		.andExpect(status().isOk())
-		.andExpect(content().string(containsString("deleted")));
-	 }
+	@WithMockUser(roles = "USER")
+	public void testForDeleteSerchHistoryPass() throws Exception {
+
+		mockMvc.perform(get("/user/searchDelete/" + i)).andExpect(status().isOk())
+				.andExpect(content().string(containsString("deleted")));
+	}
+
 	@Test
-	@WithMockUser(roles="USER")
-	 public void testForDeleteSerchHistoryFail() throws Exception {
-		mockMvc.perform(get("/user/searchDelete/1098"))
-		.andExpect(status().isOk())
-		.andExpect(content().string(containsString("Id does not exist")));
-	 }
+	@WithMockUser(roles = "USER")
+	public void testForDeleteSerchHistoryFail() throws Exception {
+		mockMvc.perform(get("/user/searchDelete/1098")).andExpect(status().isOk())
+				.andExpect(content().string(containsString("Id does not exist")));
+	}
 }

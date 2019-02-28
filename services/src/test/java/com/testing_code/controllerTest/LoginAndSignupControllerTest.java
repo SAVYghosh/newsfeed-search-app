@@ -24,7 +24,7 @@ import com.news.entity.Search;
 import com.news.entity.User;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=App.class)
+@SpringBootTest(classes = App.class)
 public class LoginAndSignupControllerTest {
 
 	@Autowired
@@ -33,152 +33,122 @@ public class LoginAndSignupControllerTest {
 	ObjectMapper mapper;
 	Search search;
 	User user;
-	
-	
+
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-		mapper=new ObjectMapper();
-		search= new Search();
-		user=new User();
+		mapper = new ObjectMapper();
+		search = new Search();
+		user = new User();
 	}
+
 	@Test
-	 public void testSignupPass() throws Exception {
+	public void testSignupPass() throws Exception {
 		Random rand = new Random();
-		 
-		int n = rand.nextInt(50)*4;
-	    System.out.println(n + "@mail.com");
-	    
+
+		int n = rand.nextInt(50) * 4;
+		System.out.println(n + "@mail.com");
+
 		user.setUserEmail(n + "@mail.com");
 		user.setUserName("sourav");
 		user.setUserPassword("User@10");
-		mockMvc.perform(post("/auth/signup")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isOk());	
-	 }
-	
+		mockMvc.perform(post("/auth/signup").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isOk());
+	}
+
 	@Test
-	 public void testSignupFailWrongEmail() throws Exception {
-		
+	public void testSignupFailWrongEmail() throws Exception {
+
 		user.setUserEmail("userSouravuser.com");
 		user.setUserName("sourav");
 		user.setUserPassword("User@10");
-		mockMvc.perform(post("/auth/signup")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
-	
+		mockMvc.perform(post("/auth/signup").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
+
 	@Test
-	 public void testSignupFailWrongPasswordPattern() throws Exception {
-		
+	public void testSignupFailWrongPasswordPattern() throws Exception {
+
 		user.setUserEmail("userSouravuser.com");
 		user.setUserName("sourav");
 		user.setUserPassword("User10");
-		mockMvc.perform(post("/auth/signup")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
-	
+		mockMvc.perform(post("/auth/signup").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
+
 	@Test
-	 public void testSignupFailWrongPasswordLength() throws Exception {
-		
+	public void testSignupFailWrongPasswordLength() throws Exception {
+
 		user.setUserEmail("userSouravuser.com");
 		user.setUserName("sourav");
 		user.setUserPassword("User10");
-		mockMvc.perform(post("/auth/signup")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
+		mockMvc.perform(post("/auth/signup").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
+
 	@Test
-	 public void testSignupFailWrongUserNameLength() throws Exception {
-		
+	public void testSignupFailWrongUserNameLength() throws Exception {
+
 		user.setUserEmail("userSouravuser.com");
 		user.setUserName("s");
 		user.setUserPassword("User10");
-		mockMvc.perform(post("/auth/signup")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
+		mockMvc.perform(post("/auth/signup").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
+
 	@Test
-	 public void testSignupFailWrongUserNamePattern() throws Exception {
-		
+	public void testSignupFailWrongUserNamePattern() throws Exception {
+
 		user.setUserEmail("userSouravuser.com");
 		user.setUserName("s1111");
 		user.setUserPassword("User@10");
-		mockMvc.perform(post("/auth/signup")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
-	
+		mockMvc.perform(post("/auth/signup").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
+
 	@Test
-	 public void testSignupFailWrongUserNameLonglength() throws Exception {
-		
+	public void testSignupFailWrongUserNameLonglength() throws Exception {
+
 		user.setUserEmail("userSouravuser.com");
 		user.setUserName("s1111111111111111111111111111111111111111111111111");
 		user.setUserPassword("User@10");
-		mockMvc.perform(post("/auth/signup")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
-	
+		mockMvc.perform(post("/auth/signup").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
+
 	@Test
-	 public void testLoginSuccessfull() throws Exception {
-		
+	public void testLoginSuccessfull() throws Exception {
+
 		user.setUserEmail("user@user.com");
 		user.setUserPassword("User@10");
-		mockMvc.perform(post("/auth/login")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isOk());	
-	 }
-	
+		mockMvc.perform(post("/auth/login").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isOk());
+	}
+
 	@Test
-	 public void testLoginFailUserBlock() throws Exception {
-		
+	public void testLoginFailUserBlock() throws Exception {
+
 		user.setUserEmail("useg@user.com");
 		user.setUserPassword("User@10");
-		mockMvc.perform(post("/auth/login")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-				.andExpect(status().isOk());	
-	
-	 }
+		mockMvc.perform(post("/auth/login").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isOk());
+	}
+
 	@Test
-	 public void testLoginFailWrongEmail() throws Exception {
-		
+	public void testLoginFailWrongEmail() throws Exception {
+
 		user.setUserEmail("us@user.com");
 		user.setUserPassword("User@10");
-		mockMvc.perform(post("/auth/login")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
+		mockMvc.perform(post("/auth/login").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
+
 	@Test
-	 public void testLoginFailWrongPassword() throws Exception {
-		
+	public void testLoginFailWrongPassword() throws Exception {
+
 		user.setUserEmail("user@user.com");
 		user.setUserPassword("User!!10");
-		mockMvc.perform(post("/auth/login")
-				.content(mapper.writeValueAsString(user))
-				.contentType("application/json;charset=UTF-8")
-				)
-		.andExpect(status().isBadRequest());	
-	 }
+		mockMvc.perform(post("/auth/login").content(mapper.writeValueAsString(user))
+				.contentType("application/json;charset=UTF-8")).andExpect(status().isBadRequest());
+	}
 }

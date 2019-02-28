@@ -20,48 +20,43 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.news.App;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=App.class)
+@SpringBootTest(classes = App.class)
 public class AdminControllerTest {
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 	private MockMvc mockMvc;
 	ObjectMapper mapper;
+
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-		mapper=new ObjectMapper();
+		mapper = new ObjectMapper();
 	}
-	
-	@Test
-	@WithMockUser(roles="ADMIN")
-	 public void testForGetUser() throws Exception {
-		mockMvc.perform(get("/admin/getUser/user@user.com"))
-		.andExpect(status().isOk())
-		.andDo(print());
-	 }
-	
 
-	
 	@Test
-	@WithMockUser(roles="ADMIN")
-	 public void testForGetAllUser() throws Exception {
-		mockMvc.perform(get("/admin/getAllUser"))
-		.andExpect(status().isOk());	
-	 }
-	
+	@WithMockUser(roles = "ADMIN")
+	public void testForGetUser() throws Exception {
+		mockMvc.perform(get("/admin/getUser/user@user.com")).andExpect(status().isOk()).andDo(print());
+	}
+
 	@Test
-	@WithMockUser(roles="ADMIN")
-	 public void testForBlockUser() throws Exception {
-		mockMvc.perform(get("/admin/blockUser/useg@user.com"))
-		.andExpect(status().isOk());
-		
-	 }
+	@WithMockUser(roles = "ADMIN")
+	public void testForGetAllUser() throws Exception {
+		mockMvc.perform(get("/admin/getAllUser")).andExpect(status().isOk());
+	}
+
 	@Test
-	@WithMockUser(roles="ADMIN")
-	 public void testForUnBlockUser() throws Exception {
-		mockMvc.perform(get("/admin/unblockUser/useg@user.com"))
-		.andExpect(status().isOk());
-		
-	 }
+	@WithMockUser(roles = "ADMIN")
+	public void testForBlockUser() throws Exception {
+		mockMvc.perform(get("/admin/blockUser/useg@user.com")).andExpect(status().isOk());
+
+	}
+
+	@Test
+	@WithMockUser(roles = "ADMIN")
+	public void testForUnBlockUser() throws Exception {
+		mockMvc.perform(get("/admin/unblockUser/useg@user.com")).andExpect(status().isOk());
+
+	}
 }

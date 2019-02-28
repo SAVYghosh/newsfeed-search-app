@@ -14,19 +14,19 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Search {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long searchId;
-	
-	@NotBlank(message="Search string required")
+
+	@NotBlank(message = "Search string required")
 	private String searchString;
-	
+
 	@CreationTimestamp
 	private LocalDateTime searchTime;
-	
+
 	@ManyToOne
-	@JoinColumn(name="userId")
+	@JoinColumn(name = "userId")
 	User user;
 
 	public long getSearchId() {
@@ -61,5 +61,4 @@ public class Search {
 		this.user = user;
 	}
 
-	
 }

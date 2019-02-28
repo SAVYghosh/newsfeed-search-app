@@ -13,48 +13,49 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import com.news.service.LoginAndSignup.LoginAndSignupService;
+
+/**
+ * @author 729715
+ * Name: Sourav Ghosh
+ * Date: Feb 28, 2019 5:46:44 PM
+ */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
-public class WebConfig extends WebSecurityConfigurerAdapter{
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	JwtEntryPoint handler;
 	@Autowired
-	LoginAndSignupService loginAndSignupService; 
+	LoginAndSignupService loginAndSignupService;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable()
-		.authorizeRequests()
-		.antMatchers("/auth/signup").permitAll()
-		.antMatchers("/auth/login").permitAll()
-		.anyRequest().authenticated()
-		.and()
-		.exceptionHandling().authenticationEntryPoint(handler)
-		.and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/auth/signup").permitAll()
+				.antMatchers("/auth/login").permitAll().anyRequest().authenticated().and().exceptionHandling()
+				.authenticationEntryPoint(handler).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(loginAndSignupService).passwordEncoder(passwordEncoder());
 	}
-	
+
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
 
-
 	@Bean
-	public JwtFilter jwtFilter(){
+	public JwtFilter jwtFilter() {
 		return new JwtFilter();
 	}
+
 	@Bean
-	public PasswordEncoder passwordEncoder(){
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 }

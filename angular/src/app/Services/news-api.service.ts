@@ -12,42 +12,42 @@ import { EmailValidator } from '@angular/forms';
 export class NewsApiService {
 
   api_key = '89830f2b03064fb59a9a5d60eb1e3842';
-emailId:String;
-  constructor(private http:HttpClient, private loginService:LoginService) {
- }
+  emailId: String;
+  constructor(private http: HttpClient, private loginService: LoginService) {
+  }
 
-  initSources(){
+  initSources() {
     console.log("in source");
 
-	 return this.http.get('https://newsapi.org/v2/sources?language=en&apiKey='+this.api_key);
+    return this.http.get('https://newsapi.org/v2/sources?language=en&apiKey=' + this.api_key);
   }
 
-  initArticles(){
+  initArticles() {
     console.log("in article");
-   return this.http.get('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey='+this.api_key);
+    return this.http.get('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=' + this.api_key);
   }
 
-  getArticlesByID(source: String){
-   return this.http.get('https://newsapi.org/v2/everything?' +
-   'q='+source +
-   '&from=2019-02-13&' +
-   'sortBy=popularity&' +
-   'apiKey='+this.api_key);
+  getArticlesByID(source: String) {
+    return this.http.get('https://newsapi.org/v2/everything?' +
+      'q=' + source +
+      '&from=2019-02-13&' +
+      'sortBy=popularity&' +
+      'apiKey=' + this.api_key);
   }
 
-  saveSearch(searchResult:Search){
+  saveSearch(searchResult: Search) {
     console.log("call service");
-    searchResult.user.userEmail=this.loginService.useUserEmail;
+    searchResult.user.userEmail = this.loginService.useUserEmail;
     console.log(searchResult.user.userEmail);
-    return this.http.post("http://localhost:8085/user/searchSave",searchResult,{responseType:'text'})
+    return this.http.post("http://localhost:8085/user/searchSave", searchResult, { responseType: 'text' })
   }
 
-  getSearch(emailId){
-    return this.http.get<Array<Search>>("http://localhost:8085/user/searchHistory/"+emailId);
+  getSearch(emailId) {
+    return this.http.get<Array<Search>>("http://localhost:8085/user/searchHistory/" + emailId);
   }
 
-  deleteSearch(searchId){
-    return this.http.get("http://localhost:8085/user/searchDelete/"+searchId,{responseType:'text'});
+  deleteSearch(searchId) {
+    return this.http.get("http://localhost:8085/user/searchDelete/" + searchId, { responseType: 'text' });
 
   }
 

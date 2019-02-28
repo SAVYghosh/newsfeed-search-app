@@ -12,21 +12,20 @@ import { User } from 'src/app/Models/User';
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   checkInSubmission: boolean;
-  correct:boolean;
-  incorrect:boolean;
+  correct: boolean;
+  incorrect: boolean;
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router,private signupService: SignupService) 
-  { 
-     
-     }
+  constructor(private formBuilder: FormBuilder, private router: Router, private signupService: SignupService) {
+
+  }
 
   ngOnInit() {
     this.checkInSubmission = false;
-    this.signUpForm=this.formBuilder.group({
-      userName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(20),Validators.pattern('^[a-zA-Z ]+$')]],
-      userEmail :['',[Validators.required,Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-zA-Z0-9_\.-]+)\\.([a-zA-Z]{2,5})$')]],
-      userPassword :['',[Validators.required,Validators.maxLength(12),Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%?&*_]).{6,}$')]]
+    this.signUpForm = this.formBuilder.group({
+      userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.pattern('^[a-zA-Z ]+$')]],
+      userEmail: ['', [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-zA-Z0-9_\.-]+)\\.([a-zA-Z]{2,5})$')]],
+      userPassword: ['', [Validators.required, Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%?&*_]).{6,}$')]]
 
     })
   }
@@ -39,32 +38,31 @@ export class SignupComponent implements OnInit {
       return;
     };
     this.signupService.signup(user).subscribe(
-      data=>{
-      if (data =="Registered"){
-        this.correct=true;
-        new Promise((res) => {
-          setTimeout(() => {
-          this.correct = false;
-          this.router.navigate(['Login']);
-          res();
-          }, 6000);
-          }) 
+      data => {
+        if (data == "Registered") {
+          this.correct = true;
+          new Promise((res) => {
+            setTimeout(() => {
+              this.correct = false;
+              this.router.navigate(['Login']);
+              res();
+            }, 6000);
+          })
         }
-        else
-        {
-          this.incorrect=true;
-          new Promise((res) => {
-            setTimeout(() => {
-            this.incorrect = false;
-            res();
-            }, 6000);
-            }) 
-            this.router.navigate(['Signup']);
+        else {
+          this.incorrect = true;
+          new Promise((res) => {
+            setTimeout(() => {
+              this.incorrect = false;
+              res();
+            }, 6000);
+          })
+          this.router.navigate(['Signup']);
 
         }
       },
-      error=>{
-        alert("Something went wrong, try again after sometime");   
+      error => {
+        alert("Something went wrong, try again after sometime");
       });
   }
 }

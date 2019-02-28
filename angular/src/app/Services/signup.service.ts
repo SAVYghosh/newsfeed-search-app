@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SignupService {
 
-   constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   signup(user: User) {
     return this.http.post("http://localhost:8085/auth/signup", user, { responseType: 'text' });
