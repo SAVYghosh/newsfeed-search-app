@@ -32,7 +32,25 @@ export class NewsApiComponent implements OnInit {
 			this.isSearch = true;
 			//load articles
 			// console.log("call article");
-			this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
+			this.newsapi.initArticles().subscribe(
+				data => 
+				{
+				this.mArticles = data['articles']
+				if (this.mArticles.length > 0) {
+					this.isload = false;
+				}
+				else {
+					new Promise((res) => {
+						setTimeout(() => {
+						  this.isload = false;
+						  res();
+						}, 3000);
+					  });
+					}
+				});
+			
+
+
 			// //  //load news sources
 			// this.newsapi.initSources().subscribe(data=> this.mSources = data['sources']);  
 			this.searchForm = this.formBuilder.group({
@@ -41,15 +59,27 @@ export class NewsApiComponent implements OnInit {
 		
 	}
 	searchArticles(source) {
+		this.isload = true;
 		this.mArticles = [];
 		this.newsapi.getArticlesByID(source.search).subscribe(
 			data => {
 				this.mArticles = data['articles']
 				if (this.mArticles.length > 0) {
+					this.isload = false;
 					this.isSearch = true;
 				}
 				else {
+					new Promise((res) => {
+						setTimeout(() => {
+						  this.isload = false;
+						  res();
+						  this.isSearch = false;
+							res();
+						}, 5000);
+					  });
+					 
 					this.isSearch = false;
+						
 				}
 			},
 			error => {
