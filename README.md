@@ -62,7 +62,7 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 
 ## To run Services
 
-1. Run mvn clean project in command prompt.
+1. Run ```mvn clean project``` in command prompt.
 2. You will get all the required dependency which is inside pom.xml in your eclipse project.
 3. This will show the success test cases and it will build .war file.
 
@@ -97,4 +97,5 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 	```
 	to check protractor
 	
-
+##Deploy in server
+1. Go insie Dist folder and copy the folder and copy .war file in service->target folder and paste it in server webapps.
