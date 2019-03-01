@@ -46,17 +46,15 @@
   <table class="table table-hover" *ngIf="issearched">
     <thead>
       <tr class="table-info">
-        <th>#</th>
-        <th>Email</th>
+        <th>Details</th>
         <th> Block</th>
       </tr>
 
     </thead>
     <tbody>
       <tr scope="row" *ngFor="let Slist of searchedList, let i=index">
-        <td> {{i+1}}</td>
-        <td id="{{i}}"><strong> {{Slist.userEmail}} </strong></td>
-        <td> <button *ngIf="Slist.userStatus" name="buttont_{{i}}" class="btn btn-warning"
+        <td style="width: 1px"> <strong style="width:10px">{{Slist.userEmail}}</strong> <br><p class="text-muted"> {{Slist.userName}}</p></td>
+        <td style="width: 1px"> <button *ngIf="Slist.userStatus" name="buttont_{{i}}" class="btn btn-warning"
             (click)="blockSearchUser(i,Slist.userEmail)"><i class="fa fa-user-times"></i>Block</button>
           <button *ngIf="!Slist.userStatus" name="ubuttont_{{i}}" class="btn btn-outline-danger"
             (click)="unblockSearchUser(i,Slist.userEmail)">&nbsp;<i class="fa fa-ban"></i>&nbsp;Unblock</button> </td>

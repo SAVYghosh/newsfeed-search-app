@@ -42,9 +42,8 @@ export class GetUserComponent implements OnInit {
   searchUser(data) {
     this.issearched = true;
     this.searchedList = [];
-    console.log("search call");
     this.analystList.forEach(user => {
-      if (user.userEmail.includes(data.Name)) {
+      if (user.userName.includes(data.Name)) {
         this.searchedList.push(user);
       }
     })
