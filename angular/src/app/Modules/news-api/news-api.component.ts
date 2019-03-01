@@ -15,6 +15,7 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class NewsApiComponent implements OnInit {
 
+	isload: boolean;
 	isSearch: boolean;
 	searchForm: FormGroup;
 	mArticles: Array<any>;
@@ -27,34 +28,41 @@ export class NewsApiComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.isSearch = true;
-		//load articles
-		// console.log("call article");
-		this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
-		// //  //load news sources
-		// this.newsapi.initSources().subscribe(data=> this.mSources = data['sources']);  
-		this.searchForm = this.formBuilder.group({
-			search: new FormControl()
-		});
+			this.isload=true;
+			this.isSearch = true;
+			//load articles
+			// console.log("call article");
+			this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
+			// //  //load news sources
+			// this.newsapi.initSources().subscribe(data=> this.mSources = data['sources']);  
+			this.searchForm = this.formBuilder.group({
+				search: new FormControl()
+			});
+		
 	}
 	searchArticles(source) {
-		this.mArticles=[];
-		this.newsapi.getArticlesByID(source.search).subscribe(data =>{
-		this.mArticles = data['articles']
-		if (this.mArticles.length >0 ) {
-			this.isSearch = true;
-		}
-		else
-		{
-		this.isSearch = false;
-		}
-	});
+		this.mArticles = [];
+		this.newsapi.getArticlesByID(source.search).subscribe(
+			data => {
+				this.mArticles = data['articles']
+				if (this.mArticles.length > 0) {
+					this.isSearch = true;
+				}
+				else {
+					this.isSearch = false;
+				}
+			},
+			error => {
+				this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
+
+			}
+		);
 		this.searchResult.searchString = source.search;
 		this.searchResult.user = this.user;
 		this.newsapi.saveSearch(this.searchResult).subscribe(
 			data => {
 			});
-	
+
 	}
 
 }

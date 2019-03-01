@@ -9,7 +9,7 @@ import { Search } from 'src/app/Models/Search';
   styleUrls: ['./search-history.component.css']
 })
 export class SearchHistoryComponent implements OnInit {
-  isHistory:boolean;
+  isHistory: boolean;
   emailId: String;
   SearchList: Search[];
   isDelete: Boolean;
@@ -20,26 +20,24 @@ export class SearchHistoryComponent implements OnInit {
     this.newsapi.getSearch(this.emailId).subscribe(
       data => {
         this.SearchList = data;
-      
-      if(this.SearchList.length>0)
-      {
-        this.isHistory=true;
-      }
-      else
-      this.isHistory=false;
-    });
+
+        if (this.SearchList.length > 0) {
+          this.isHistory = true;
+        }
+        else
+          this.isHistory = false;
+      });
   }
 
   deleteSearch(i: number, searchId) {
     this.SearchList.splice(i, 1);
     this.newsapi.deleteSearch(searchId).subscribe(
       data => {
-        if(this.SearchList.length>0)
-        {
-          this.isHistory=true;
+        if (this.SearchList.length > 0) {
+          this.isHistory = true;
         }
         else
-        this.isHistory=false;
+          this.isHistory = false;
       }
     )
     alert("one history deleted");

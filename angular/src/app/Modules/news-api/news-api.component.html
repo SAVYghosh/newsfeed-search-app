@@ -25,22 +25,23 @@
 <div *ngIf="!isSearch" class="row col-md-8 col-sm-8 offset-md-2 offset-sm-1 alert alert-danger">
   <p>NO NEWS FOUND</p>
 </div>
-  <div *ngIf="isSearch" class="row col-md-8 col-sm-8 offset-md-2 offset-sm-1">
+<div *ngIf="isSearch" class="row col-md-8 col-sm-8 offset-md-2 offset-sm-1">
   <div class="mx-2 my-4 shadow-lg p-3  bg-white" *ngFor="let article of mArticles;let i=index">
 
     <h4 class=" art-title">{{mArticles[i].title}}</h4>
     <h6 class=" text-muted">{{mArticles[i].source.name}}</h6>
     <div class="row">
       <div>
-        <img mat-card-image class="img-article fix-image" src={{mArticles[i].urlToImage}} alt=""
-          style="width:340px;height:300px">
+        <img mat-card-image class="img-article fix-image" src={{mArticles[i].urlToImage}} alt="no-image"
+          style="width:340px;height:170px">
       </div>
       <div class=" mx-4 col-md-6 col-sm-10">
-        <p>
+        <br>
+        <span>
           {{article.description}}
-        </p>
+        </span>
         <a href={{article.url}} target="_blank" class="card-link ml-auto mb-2">
-          ... Read
+          Read
           More
         </a>
       </div>
