@@ -15,6 +15,7 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class NewsApiComponent implements OnInit {
 
+	isSearch: boolean;
 	searchForm: FormGroup;
 	mArticles: Array<any>;
 	mSources: Array<any>;
@@ -26,9 +27,10 @@ export class NewsApiComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.isSearch = true;
 		//load articles
-		console.log("call article");
-		 this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
+		// console.log("call article");
+		this.newsapi.initArticles().subscribe(data => this.mArticles = data['articles']);
 		// //  //load news sources
 		// this.newsapi.initSources().subscribe(data=> this.mSources = data['sources']);  
 		this.searchForm = this.formBuilder.group({
@@ -36,14 +38,23 @@ export class NewsApiComponent implements OnInit {
 		});
 	}
 	searchArticles(source) {
-		console.log("selected source is: " + source.search);
-		this.newsapi.getArticlesByID(source.search).subscribe(data => this.mArticles = data['articles']);
+		this.mArticles=[];
+		this.newsapi.getArticlesByID(source.search).subscribe(data =>{
+		this.mArticles = data['articles']
+		if (this.mArticles.length >0 ) {
+			this.isSearch = true;
+		}
+		else
+		{
+		this.isSearch = false;
+		}
+	});
 		this.searchResult.searchString = source.search;
-		console.log(this.searchResult.searchString);
 		this.searchResult.user = this.user;
 		this.newsapi.saveSearch(this.searchResult).subscribe(
 			data => {
 			});
+	
 	}
 
 }
