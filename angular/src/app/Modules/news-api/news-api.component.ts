@@ -44,7 +44,7 @@ export class NewsApiComponent implements OnInit {
 						setTimeout(() => {
 						  this.isload = false;
 						  res();
-						}, 3000);
+						},);
 					  });
 					}
 				});
