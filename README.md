@@ -73,16 +73,16 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
     ```
     npm install
     ```
-3. For running on local host server run this command ng serve --open.
+3. For running on local host server run this command ```ng serve --open```.
 4. Run 
  ```ng build --prod```
     to create dist folder.
 	
-5. run 
+5. Run 
 	```
 	ng test
 	```
-	to run karma tests
+	to check karma tests
 6. run following command to start webdriver
 
 	```  webdriver-manager clean ```
@@ -97,5 +97,5 @@ This is a boiler plate project for FSD Certification Practice Check. Admin can s
 	```
 	to check protractor
 	
-##Deploy in server
+## Deploy in server
 1. Go insie Dist folder and copy the folder and copy .war file in service->target folder and paste it in server webapps.
